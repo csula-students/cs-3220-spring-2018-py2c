@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Incremental Game </title>
+</head>
+<body>
+    <h1>Incremental Game Framework</h1>
+    <ul><a href= "admin-info.html"> Game Information  </a> <em> &nbsp; | &nbsp;</em>
+        <a href= "admin-generators.html">   Generators </a> <em> &nbsp; | &nbsp;</em> 
+        <a href= "admin-events.html">  Events </a>
+    </ul>
+
+
+    <form action="">
+
+            <label for=" gen name">Generator Name</label>
+            <br>
+            <br>
+            <input type="text" id="name" value =" Grandma " >
+           
+        </form><br>
+        
+    <form action="">
+
+            <label for=" gen rate">Generator Rate</label>
+            <br>
+            <br>
+            <input type="text" id="name" value =" 0.05 " >
+           
+        </form><br>
+        
+    <form action="">
+
+            <label for="bcost">Base Cost</label>
+            <br>
+            <br>
+            <input type="text" id="name" value =" 10 " >
+           
+        </form><br>
+        
+    <form action="">
+
+            <label for="unlock">Unlock At</label>
+            <br>
+            <br>
+            <input type="text" id="name" value =" 10 " >
+           
+        </form><br>
+
+        <form action = "">
+                <label for "Description"> Description</label>
+                <br>
+                <br>
+                <textarea ="" rows ="5" cols = "37">
+Text
+                </textarea>  
+              </form><br>
+           
+              <button>{Add|Edit}</button>
+
+<table>
+        <thead>
+            <tr>
+                 <th>Name </th>
+                 <th>Rate </th>
+                 <th>Cost </th>
+                 <th>Unlock At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               <td>Grandma </td>
+               <td>5</td>
+               <td>10</td>
+               <td>5</td>
+            </tr>
+            <tr>
+                    <td> Factory </td>
+                    <td>10</td>
+                    <td>50</td>
+                    <td>50</td>
+            </tr>
+            <tr>
+                    <td> Mine </td>
+                    <td>20</td>
+                    <td>200</td>
+                    <td>200</td>
+        </tr>
+     </tbody>
+</table>
+
+</body>
+<style>
+
+ h1
+    {
+        font-size: 30px; 
+        
+       
+   }
+    ul {
+        font-size: 15px;
+       
+       
+        
+    }    
+
+    em 
+    {
+        font-size: 30px; 
+        font-weight: bold;
+    }
+    label
+    {
+        font-size: 16px;
+        
+        
+    }
+    input 
+   {
+        font-size: 12px;
+        border: 2px solid gray;
+        width: 100px;
+      
+        
+   }
+    table
+    {
+        border: 1px solid gray;
+        width: 40%;
+        margin:-460px 0 0 300px;
+
+    }
+    tr:nth-child(odd)
+    {
+        background-color: #f2f2f2;
+    }
+    th,td{
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+
+    }
+    th {
+        background-color:cornflowerblue;
+       
+    }
+    textarea{  
+        border:  solid 1px black;
+        
+    }
+    button
+    {   
+        font-size: 14px;
+        background-color: white;color:black;
+        border: 2px solid gray;
+        border-radius: 10px;
+        width: 100px;
+        margin: 0px 0 0 185px;
+    }
+
+</style>
