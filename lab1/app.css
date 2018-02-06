@@ -1,0 +1,18 @@
+
+
+
+
+
+
+textarea{
+box-sizing: border-box;
+font-size: 16px;
+font-family: Avenir Next,Helvetica,Arial,Sans-Serif;
+width: 75%;
+padding: 0.5em 1em;
+overflow:scroll; 
+}
+.width-constraint {
+  max-width: 80em;
+   margin: 0 auto;
+}
