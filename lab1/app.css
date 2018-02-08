@@ -29,9 +29,10 @@ html,
  
  button {
      padding: 0.5em 1em;
-     background-color: #fff;
+     background-color:#6666FF;color:white;
      border: 1px solid #ccc;
      border-radius: 8px;
+     
  }
  button:hover {
      background-color: #eee;
@@ -54,7 +55,6 @@ html,
      flex: 1;
  }  
 .row-container_2{
-
     display: flex;
     justify-content: space-between
 }
