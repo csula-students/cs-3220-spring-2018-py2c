@@ -1,7 +1,6 @@
 html,
  body,
  button,
- input,
  label,
  textarea {
      box-sizing: border-box;
@@ -10,28 +9,29 @@ html,
  }
  
  .width-constraint {
-     max-width: 80em;
+    max-width: 80em;
     margin: 0 auto;
 }
- 
- label {
-     display: block;
- }
- 
+  
  body > header {
      margin-bottom: 1em;
  }
  
- input,
+
  textarea {
-     width: 100%;
-     padding: 0.5em 1em;
+    height: 110px !important;
+    width: 100% !important;
+    padding: 0.5em 1em;
+    color:white;
+    background-color: black;
+    overflow:auto;
  }
  
  button {
      padding: 0.5em 1em;
      background-color: #fff;
      border: 1px solid #ccc;
+     border-radius: 8px;
  }
  button:hover {
      background-color: #eee;
@@ -44,34 +44,27 @@ html,
      margin-bottom: 1em;
  }
  
- .main-nav {
-     margin: 1em 0;
- }
- .main-nav a {
-     margin: 0.5em;
-     text-decoration: none;
- }
- .main-nav a.active {
-     font-weight: bold;
- }
- 
  /**
   * basic layout
   */
  .row-container {
      display: flex;
  }
- .row-container .fill {
+ .row-container {
      flex: 1;
- }
- 
- .card {
+ }  
+.row-container_2{
+
+    display: flex;
+    justify-content: space-between
+}
+.card {
      max-width: 30em;
      background-color: #fff;
      padding: 1em;
-     border-radius: 3px;
+     border-radius: 2px;
      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-     margin: 1em;
+     margin: 0.2em;
  }
  .card .actions {
      display: flex;
