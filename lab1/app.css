@@ -58,6 +58,10 @@ html,
     display: flex;
     justify-content: space-between
 }
+.rows{
+    display: flex;
+    justify-content: space-between
+}
 .card {
      max-width: 30em;
      background-color: #fff;
@@ -67,7 +71,7 @@ html,
      margin: 0.2em;
  }
  .card .actions {
-     display: flex;
-     justify-content: flex-end;
- }
+    display: flex;
+    justify-content: flex-end;
+}
  
