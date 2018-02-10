@@ -1,49 +1,50 @@
 html,
- body,
- button,
- label,
- textarea {
+body,
+button,
+label,
+textarea {
      box-sizing: border-box;
      font-size: 16px;
      font-family: Avenir Next,Helvetica,Arial,Sans-Serif;
  }
  
- .width-constraint {
+.width-constraint {
     max-width: 80em;
     margin: 0 auto;
 }
   
- body > header {
+
+body > header {
      margin-bottom: 1em;
- }
+}
  
 
- textarea {
+textarea {
     height: 110px !important;
     width: 100% !important;
     padding: 0.5em 1em;
     color:white;
     background-color: black;
     overflow:auto;
- }
+}
  
- button {
+button {
      padding: 0.5em 1em;
      background-color:#6666FF;color:white;
      border: 1px solid #ccc;
      border-radius: 8px;
      
- }
- button:hover {
+}
+button:hover {
      background-color: #eee;
- }
- button:active {
+}
+button:active {
      background-color: #ccc;
- }
+}
  
- .form-group {
+.form-group {
      margin-bottom: 1em;
- }
+}
  
  /**
   * basic layout
