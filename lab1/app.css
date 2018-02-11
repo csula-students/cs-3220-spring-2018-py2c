@@ -5,19 +5,17 @@ label,
 textarea {
      box-sizing: border-box;
      font-size: 16px;
-     font-family: Avenir Next,Helvetica,Arial,Sans-Serif;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
  }
- 
 .width-constraint {
     max-width: 80em;
     margin: 0 auto;
-}
-  
-
+} 
 body > header {
      margin-bottom: 1em;
 }
- 
+body{
+    background-color:#ccc}
 
 textarea {
     height: 110px !important;
@@ -27,7 +25,6 @@ textarea {
     background-color: black;
     overflow:auto;
 }
- 
 button {
      padding: 0.5em 1em;
      background-color:#6666FF;color:white;
@@ -45,7 +42,6 @@ button:active {
 .form-group {
      margin-bottom: 1em;
 }
- 
  /**
   * basic layout
   */
@@ -56,12 +52,14 @@ button:active {
      flex: 1;
  }  
 .row-container_2{
+    padding: 1em;
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
 }
 .rows{
+    
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
 }
 .card {
      max-width: 30em;
