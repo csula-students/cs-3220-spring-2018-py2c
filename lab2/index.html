@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title> Dungeon Extraordinare</title>
 	<link rel="stylesheet" href="app.css">
+
 </head>
 <body class = "width-constraint">
 	<header>
@@ -27,7 +28,7 @@
 </textarea>
 <br>
 <div class= "row-container_2">
-			<h2>Rupees : 150</h2>
+			<p id = "counts"> Rupee's : 0</p>
 			<div class="actions">
 					<button id = "click-me">Click Me</button>
 			</div>
@@ -37,26 +38,33 @@
 
 <div class="row-container">
 <form class="card" action="">
-	<div class "form group">
+	<div class ="form group">
+			<div class = "rows">
 		<label for="Potion">Potion</label>
+		<p for "holding"> 0</p> 
+		</div>
 		<p>This potion increases yout attack and restores 
 			.005 hp per second</p>
 	</div>
 	<br>
 	<div class = "rows">
+			<p id ="B_Potion">100/10000</p>
 			<div class="actions">
 				<button>100 Rupees</button>
 			</div>
 	</div>
 </form>
 <form class="card"action="">
- 
-		<div class "form group">
+		<div class = "form group">
+				<div class = "rows">
 				<label for="Pet">Pet</label>
+				<p for "holding"> 0</p> 
+				</div>
 				<p>This pet companion picks up 10 Ruby's per second</p>
 			</div>
 			<br>
 			<div class = "rows">
+					<p id="B_Pet">500/10000</p>
 					<div class="actions">
 						<button> 500 Rupees</button>
 					</div>
@@ -66,11 +74,15 @@
 
 <form class="card"action="">
 <div class "form group">
-		<label for="Adventurer">2nd Adventurer </label>
+	<div class = "rows">
+			<label for="Adventurer">2nd Adventurer </label>
+			<p for "holding"> 0</p> 
+	</div>
 		<p>This second human companion deals 10 dmg per second </p>
 	</div>
 	<br>
 	<div class = "rows">
+			<p id="B_Adventurer">1200/10000</p>
 			<div class="actions">
 				<button> 10000 Rupees</button>
 			</div>
@@ -80,6 +92,18 @@
 </div>
 
 </main>
+
+<script>
+
+window.incrementalGame = {
+    state: {
+         counter: 0
+    }
+};
+
+src = "app.js";
+</script>
+
 </body>
 <footer>
 	<p>
