@@ -5,6 +5,25 @@ export default function reducer (state, action) {
 		return state;
 	default:
 		return state;
+
+		case 'BUY_GENERATOR ':
+		 if (action.payload == 'Potion')
+		{
+			state.counter = state.counter  - 5;
+			window.store._state.counter= state.counter;
+		}
+		else if (action.payload == 'Pet')
+		{	
+			state.counter = state.counter  - 10;
+			window.store._state.counter= state.counter;
+		}
+		else if (action.payload == 'Human')
+	     {
+			state.counter = state.counter  - 15;
+			window.store._state.counter= state.counter;
+		}
+		 return window.store;
+		 break;
 	}
 }
 

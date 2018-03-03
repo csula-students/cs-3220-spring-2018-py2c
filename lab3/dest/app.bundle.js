@@ -741,6 +741,20 @@ function reducer(state, action) {
 			return state;
 		default:
 			return state;
+
+		case 'BUY_GENERATOR ':
+			if (action.payload == 'Potion') {
+				state.counter = state.counter - 5;
+				window.store._state.counter = state.counter;
+			} else if (action.payload == 'Pet') {
+				state.counter = state.counter - 10;
+				window.store._state.counter = state.counter;
+			} else if (action.payload == 'Human') {
+				state.counter = state.counter - 15;
+				window.store._state.counter = state.counter;
+			}
+			return window.store;
+			break;
 	}
 }
 
@@ -785,7 +799,11 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
-			// TODO: render counter inner HTML based on the store state
+			this.innerHTML = `
+			<p id = "counts"> Rupee's : 0</p>
+			<div class="actions">
+					<button id = "click-me">Click Me</button>
+			</div>				`;
 
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
@@ -793,6 +811,7 @@ exports.default = function (store) {
 		handleStateChange(newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
+			document.getElementById("counts").innerHTML = 'Rupees :  ' + windonw.store._state.counter;
 		}
 
 		connectedCallback() {
@@ -861,23 +880,134 @@ exports.default = function (store) {
 
 
 Object.defineProperty(exports, "__esModule", {
-			value: true
+	value: true
 });
 
 exports.default = function (store) {
-			return class GeneratorComponent extends window.HTMLElement {
-						constructor() {
-									super();
-									this.store = store;
+	return class GeneratorComponent extends window.HTMLElement {
+		constructor() {
+			super();
+			this.store = store;
+			this.init(); //where = js comp.html
+			this.onStageChange = this.onStageChange.bind(this); //where = button.js
 
-									// TODO: render generator initial view
+			// TODO: add click event
+			document.querySelector('#Potion').addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: 'Potion'
 
-									// TODO: subscribe to store on change event
+				});
+			});
+			document.querySelector('#Pet').addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: 'Pet'
 
-									// TODO: add click event
-						}
-			};
+				});
+			});
+
+			document.querySelector('#Human').addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: 'Human'
+
+				});
+			});
+		}
+
+		// TODO: subscribe to store on change event
+		handleStageChange(newState) {
+			console.log('GeneratorComponent#StateChange', this, newState);
+			this.store.subscribe(newState);
+		}
+
+		connectedCallback() {
+			console.log('GeneratorComponent#onConnectedCallBack');
+			this.store.subscribe(this.onStageChange);
+		}
+		disconnectedCallback() {
+			console.log('GeneratorComponent#onDisconnectedCallBack');
+			this.store.unsubscribe(this.onStageChange);
+		}
+
+		// TODO: render generator initial view
+		//where = js comp html 
+		init() {
+			const id = this.dataset.id;
+			switch (id) {
+
+				case '1':
+					this.innerHTML = `
+	
+	<form class="card" action="">
+		<div class ="form group">
+				<div class = "rows">
+			<label for="Potion">Potion</label>
+			<p class = 'holding'> 0</p> 
+			</div>
+			<p>This potion increases yout attack and restores 
+				.005 hp per second</p>
+		</div>
+		<br>
+		<div class = "rows">
+				<p id ="B_Potion">100/10000</p>
+				<div class="actions">
+					<button id 'change'>5 Rupees</button>
+				</div>
+		</div>
+	</form>
+	`;break;
+
+				case '2':
+					this.innerHTML = `
+	   
+	   <form class="card"action="">
+	   <div class = "form group">
+			   <div class = "rows">
+			   <label for="Pet">Pet</label>
+			   <p class = 'holding'> 0</p>  
+			   </div>
+			   <p>This pet companion picks up 10 Ruby's per second</p>
+		   </div>
+		   <br>
+		   <div class = "rows">
+				   <p id="B_Pet">500/10000</p>
+				   <div class="actions">
+					   <button id = 'change'> 10 Rupees</button>
+				   </div>
+		   </div>
+	   
+	</form>
+	
+	 `;break;
+
+				case '3':
+					this.innerHTML = `
+	 <form class="card"action="">
+	 <div class "form group">
+		 <div class = "rows">
+				 <label for="Adventurer">2nd Adventurer </label>
+				 <p class = 'holding'> 0</p> 
+		 </div>
+			 <p>This second human companion deals 10 dmg per second </p>
+		 </div>
+		 <br>
+		 <div class = "rows">
+				 <p id="B_Adventurer">1200/10000</p>
+				 <div class="actions">
+					 <button id = 'change'> 15 Rupees</button>
+				 </div>
+		 </div>
+	 </form>
+	 `;break;
+			}
+		}
+
+	};
 };
+
+;
 
 /***/ }),
 /* 11 */

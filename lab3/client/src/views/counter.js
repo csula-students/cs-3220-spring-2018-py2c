@@ -3,14 +3,23 @@ export default function (store) {
 		constructor () {
 			super();
 			this.store = store;
-			// TODO: render counter inner HTML based on the store state
+			this.innerHTML = `
+			<p id = "counts"> Rupee's : 0</p>
+			<div class="actions">
+					<button id = "click-me">Click Me</button>
+			</div>				`
 
 			this.onStateChange = this.handleStateChange.bind(this);
+
+
+
+
 		}
 
 		handleStateChange (newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
+			document.getElementById("counts").innerHTML = 'Rupees :  ' + windonw.store._state.counter;
 		}
 
 		connectedCallback () {
