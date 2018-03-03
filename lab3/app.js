@@ -1,4 +1,4 @@
-
+/*
 class PubSub {
     constructor () {
         this.subscribers = [];
@@ -34,3 +34,4 @@ counter ++;
 window.incrementalGame.state.counter = counter;
 document.getElementById("counts").innerHTML = "Rupee's : " + counter ;
 });
+*/

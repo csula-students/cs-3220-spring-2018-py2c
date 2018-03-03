@@ -28,8 +28,8 @@ export default class Generator {
 	 */
 	getCost () {
 		// TODO: implement the function according to doc above
-		var xt = ((this.baseCost*Math.pow(1 + constants.growthRatio,this.quantity )).toFixed(2));
-		return 0;
+		var xt = ((this.baseCost*Math.pow(1 + constants.growthRatio,this.quantity ))* 100)/100;
+		return xt;
 	}
 
 	/**

@@ -3,7 +3,7 @@ export default function (store) {
 		constructor () {
 			super();
 			this.store = store;
-			this.init();//where = js comp.html
+			this.init();
 			this.onStageChange = this.onStageChange.bind(this);//where = button.js
 
 			// TODO: add click event
@@ -29,10 +29,7 @@ export default function (store) {
 
 				});
 			});
-
-			
 		}
-
 	// TODO: subscribe to store on change event
  handleStageChange(newState)
  {
@@ -40,7 +37,7 @@ export default function (store) {
 	 this.store.subscribe(newState);
  }
 
- connectedCallback(){
+ connectedCallback(){	
 	console.log('GeneratorComponent#onConnectedCallBack');
 	this.store.subscribe(this.onStageChange);	
  }
@@ -49,9 +46,9 @@ export default function (store) {
 	 this.store.unsubscribe(this.onStageChange);
  }
 
-		// TODO: render generator initial view
-		//where = js comp html 
- init(){
+
+ init()
+ {
 	const id = this.dataset.id;
 	switch(id){
 	
@@ -71,7 +68,7 @@ export default function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">100/10000</p>
 				<div class="actions">
-					<button id 'change'>5 Rupees</button>
+					<button id =''>5 Rupees</button>
 				</div>
 		</div>
 	</form>
@@ -123,13 +120,10 @@ export default function (store) {
 	 </form>
 	 `;break;
 	}
-	
-	
-	
-	}
 
 
 
+ }
 
 }
 

@@ -745,16 +745,22 @@ function reducer(state, action) {
 		case 'BUY_GENERATOR ':
 			if (action.payload == 'Potion') {
 				state.counter = state.counter - 5;
-				window.store._state.counter = state.counter;
+				window.store.__state.counter = state.counter;
 			} else if (action.payload == 'Pet') {
 				state.counter = state.counter - 10;
-				window.store._state.counter = state.counter;
+				window.store.__state.counter = state.counter;
 			} else if (action.payload == 'Human') {
 				state.counter = state.counter - 15;
-				window.store._state.counter = state.counter;
+				window.store.__state.counter = state.counter;
 			}
 			return window.store;
 			break;
+
+		case 'Coins':
+			window.store.__state.counter++;
+			return window.store;
+			break;
+
 	}
 }
 
@@ -801,17 +807,23 @@ exports.default = function (store) {
 			this.store = store;
 			this.innerHTML = `
 			<p id = "counts"> Rupee's : 0</p>
-			<div class="actions">
+			<div class = "actions">
 					<button id = "click-me">Click Me</button>
-			</div>				`;
+			</div>`;
 
 			this.onStateChange = this.handleStateChange.bind(this);
+			this.querySelector('#click-me').addEventListener('click', () => {
+				this.store.dispatch({
+
+					type: 'Coins'
+				});
+			});
 		}
 
 		handleStateChange(newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
-			document.getElementById("counts").innerHTML = 'Rupees :  ' + windonw.store._state.counter;
+			document.getElementById("counts").innerHTML = window.store.__state.counter;
 		}
 
 		connectedCallback() {
@@ -888,7 +900,7 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
-			this.init(); //where = js comp.html
+			this.init();
 			this.onStageChange = this.onStageChange.bind(this); //where = button.js
 
 			// TODO: add click event
@@ -915,7 +927,6 @@ exports.default = function (store) {
 				});
 			});
 		}
-
 		// TODO: subscribe to store on change event
 		handleStageChange(newState) {
 			console.log('GeneratorComponent#StateChange', this, newState);
@@ -931,8 +942,6 @@ exports.default = function (store) {
 			this.store.unsubscribe(this.onStageChange);
 		}
 
-		// TODO: render generator initial view
-		//where = js comp html 
 		init() {
 			const id = this.dataset.id;
 			switch (id) {
@@ -953,7 +962,7 @@ exports.default = function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">100/10000</p>
 				<div class="actions">
-					<button id 'change'>5 Rupees</button>
+					<button id =''>5 Rupees</button>
 				</div>
 		</div>
 	</form>

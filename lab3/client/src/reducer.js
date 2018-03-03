@@ -7,23 +7,31 @@ export default function reducer (state, action) {
 		return state;
 
 		case 'BUY_GENERATOR ':
-		 if (action.payload == 'Potion')
+		 if (action.payload === 'Potion')
 		{
 			state.counter = state.counter  - 5;
-			window.store._state.counter= state.counter;
+			window.store.__state.counter= state.counter;
 		}
-		else if (action.payload == 'Pet')
+		else if (action.payload === 'Pet')
 		{	
 			state.counter = state.counter  - 10;
-			window.store._state.counter= state.counter;
+			window.store.__state.counter= state.counter;
 		}
-		else if (action.payload == 'Human')
+		else if (action.payload === 'Human')
 	     {
 			state.counter = state.counter  - 15;
-			window.store._state.counter= state.counter;
+			window.store.__state.counter= state.counter;
 		}
 		 return window.store;
 		 break;
+
+
+		case 'Coins':
+		window.store.__state.counter++;
+		return window.store;
+		break;
+
+
 	}
 }
 
