@@ -11,100 +11,39 @@
 		<h1>The Abyss Point</h1>
 	</header>
 <main>
-<div class ="story-time"> 
-
-		
+<div class ="story-time"> 	
 	<p>Waking up in a dark place</p>	
     <p>you start to explore</p>
 	<p>going deeper and deeper</p>
 	<p>will you find your way</p>
-	<p>or will you perish away</p>
-					
-			
+	<p>or will you perish away</p>			
 </div>	
 
-
-
-</textarea>
 <br>
 <div class= "row-container_2">
 			<p id = "counts"> Rupee's : 0</p>
 			<div class="actions">
 					<button id = "click-me">Click Me</button>
-			</div>
-			
-	
+			</div>				
 </div>
 
 <div class="row-container">
-<form class="card" action="">
-	<div class ="form group">
-			<div class = "rows">
-		<label for="Potion">Potion</label>
-		<p for "holding"> 0</p> 
-		</div>
-		<p>This potion increases yout attack and restores 
-			.005 hp per second</p>
-	</div>
-	<br>
-	<div class = "rows">
-			<p id ="B_Potion">100/10000</p>
-			<div class="actions">
-				<button>100 Rupees</button>
-			</div>
-	</div>
-</form>
-<form class="card"action="">
-		<div class = "form group">
-				<div class = "rows">
-				<label for="Pet">Pet</label>
-				<p for "holding"> 0</p> 
-				</div>
-				<p>This pet companion picks up 10 Ruby's per second</p>
-			</div>
-			<br>
-			<div class = "rows">
-					<p id="B_Pet">500/10000</p>
-					<div class="actions">
-						<button> 500 Rupees</button>
-					</div>
-			</div>
-		
-</form>
-
-<form class="card"action="">
-<div class "form group">
-	<div class = "rows">
-			<label for="Adventurer">2nd Adventurer </label>
-			<p for "holding"> 0</p> 
-	</div>
-		<p>This second human companion deals 10 dmg per second </p>
-	</div>
-	<br>
-	<div class = "rows">
-			<p id="B_Adventurer">1200/10000</p>
-			<div class="actions">
-				<button> 10000 Rupees</button>
-			</div>
-	</div>
-</form>
-
+<game-generetor data-id = '1'></game-generetor>
+<game-generetor data-id = '2'></game-generetor>
+<game-generetor data-id = '3'></game-generetor>
 </div>
-
 </main>
-
-
-<component-example></component-example>
-
 <script>
 window.incrementalGame = {
 		state: {
 			 counter: 0
 		}
 	};
-	</script>
+</script>
 <script type "text/javascript" src = "app.js"></script>
 <script src ="dest/app.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js"></script>
+
 </body>
 <footer>
 	<p>
