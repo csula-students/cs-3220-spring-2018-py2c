@@ -15,7 +15,7 @@ console.log('Element Conected');
 
 this.querySelector().addlistener('click',()=>{
 	console.log(this)
-	
+
 });
 
 }
@@ -51,7 +51,8 @@ switch(id){
 
 `;break;
 
-   case '2':`
+   case '2':
+   this.innerHTML =`
    
    <form class="card"action="">
    <div class = "form group">
@@ -75,7 +76,8 @@ switch(id){
 
 
 
- case '3':`
+ case '3':
+ this.innerHTML = `
  <form class="card"action="">
  <div class "form group">
 	 <div class = "rows">
