@@ -6,7 +6,7 @@ export default function (store) {
 			this.innerHTML = `
 			<p id = "counts"> Rupee's : 0</p>
 			<div class = "actions">
-					<button id = "click-me">Click Me</button>
+				<button id = "click-me">Click Me</button>
 			</div>`
 
 			this.onStateChange = this.handleStateChange.bind(this);
@@ -18,9 +18,6 @@ export default function (store) {
 				});
 
 		});
-
-
-
 
 		}
 
