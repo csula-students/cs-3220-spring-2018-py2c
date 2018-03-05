@@ -18,28 +18,24 @@
 	<p>will you find your way</p>
 	<p>or will you perish away</p>			
 </div>	
-
 <br>
+
 <div class= "row-container_2">
 <game-counter></game-counter>
-			
+<game-button></game-button>	
 </div>
 
-<div class="row-container">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js"></script>
-<game-generetor data-id = '1',data-payload = 'Potion'></game-generetor>
-<game-generetor data-id = '2',data-payload = 'Pet'></game-generetor>
-<game-generetor data-id = '3',data-payload = 'Human'></game-generetor>
-</div>
+
+
+<game-generator></game-generator>
+<game-generator></game-generator>
+<game-generator></game-generator>
+
+
+
+
 </main>
-<script>
-window.incrementalGame = {
-		state: {
-			 counter: 0
-		}
-	};
-</script>
-<script type "text/javascript" src = "app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.1.0/webcomponents-lite.js"></script>
 <script src ="dest/app.bundle.js"></script>
 
 </body>
@@ -49,3 +45,6 @@ window.incrementalGame = {
 	</p>
 </footer>
 </html>
+
+
+

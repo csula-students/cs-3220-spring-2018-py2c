@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,35 +70,54 @@
 "use strict";
 
 
-__webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	growthRatio: 0.05,
+	actions: {
+		EXAMPLE: 'EXAMPLE_MUTATION',
+		BUY_GENERATOR: 'BUY_GENERATOR',
+		BUTTON_CLICK: 'BUTTON_CLICK'
+	}
+};
 
-var _game = __webpack_require__(4);
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var _store = __webpack_require__(5);
+"use strict";
+
+
+__webpack_require__(2);
+
+var _game = __webpack_require__(5);
+
+var _store = __webpack_require__(6);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(6);
+var _reducer = __webpack_require__(7);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(7);
+var _button = __webpack_require__(8);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(8);
+var _counter = __webpack_require__(9);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(9);
+var _example = __webpack_require__(10);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(10);
+var _generator = __webpack_require__(11);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(11);
+var _storyBook = __webpack_require__(12);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -198,7 +217,7 @@ function main() {
 }
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -399,10 +418,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -429,7 +448,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -619,7 +638,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -653,7 +672,7 @@ function increment(state, modifier = 1) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -724,7 +743,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -734,38 +753,31 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = reducer;
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function reducer(state, action) {
+
 	switch (action.type) {
 		case 'EXAMPLE_MUTATION':
 			state.example = action.payload;
 			return state;
-		default:
+
+		case _constants2.default.actions.BUTTON_CLICK:
+			state.counter++;
 			return state;
 
-		case 'BUY_GENERATOR ':
-			if (action.payload == 'Potion') {
-				state.counter = state.counter - 5;
-				window.store.__state.counter = state.counter;
-			} else if (action.payload == 'Pet') {
-				state.counter = state.counter - 10;
-				window.store.__state.counter = state.counter;
-			} else if (action.payload == 'Human') {
-				state.counter = state.counter - 15;
-				window.store.__state.counter = state.counter;
-			}
-			return window.store;
-			break;
-
-		case 'Coins':
-			window.store.__state.counter++;
-			return window.store;
-			break;
-
+		default:
+			return state;
 	}
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -780,17 +792,38 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
-
-			this.onStateChange = this.handleStateChange.bind(this);
-
-			// TODO: add click event to increment counter
-			// hint: use "store.dispatch" method (see example component)
 		}
+
+		// TODO: add click event to increment counter
+		// hint: use "store.dispatch" method (see example component)
+
+
+		connectedCallback() {
+			console.log('ButtonComponentt#onConnectedCallback');
+			this.innerHTML = '<button>Click me</button>';
+			this.addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUTTON_CLICK'
+				});
+			});
+		}
+
+		disconnectedCallback() {
+			console.log('ButtonComponent#onDisconnectedCallback');
+			this.store.unsubscribe(this.onStateChange);
+		}
+
 	};
 };
 
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -805,28 +838,15 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
-			this.innerHTML = `
-			<p id = "counts"> Rupee's : 0</p>
-			<div class = "actions">
-					<button id = "click-me">Click Me</button>
-			</div>`;
-
 			this.onStateChange = this.handleStateChange.bind(this);
-			this.querySelector('#click-me').addEventListener('click', () => {
-				this.store.dispatch({
-
-					type: 'Coins'
-				});
-			});
 		}
-
 		handleStateChange(newState) {
 			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
-			document.getElementById("counts").innerHTML = window.store.__state.counter;
+			this.innerHTML = `Rupees : ${newState.counter}`;
 		}
-
 		connectedCallback() {
+			this.innerHTML = 'Rupees : 0 ';
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -837,7 +857,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -885,7 +905,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -900,40 +920,17 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
-			this.init();
-			this.onStageChange = this.onStageChange.bind(this); //where = button.js
-
-			// TODO: add click event
-			document.querySelector('#Potion').addEventListener('click', () => {
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload: 'Potion'
-
-				});
-			});
-			document.querySelector('#Pet').addEventListener('click', () => {
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload: 'Pet'
-
-				});
-			});
-
-			document.querySelector('#Human').addEventListener('click', () => {
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload: 'Human'
-
-				});
-			});
 		}
 		// TODO: subscribe to store on change event
-		handleStageChange(newState) {
-			console.log('GeneratorComponent#StateChange', this, newState);
-			this.store.subscribe(newState);
+
+		handleStateChange(newState) {
+			this.innerHTML = this.init();
+			console.log('GeneratorComponentt#stateChange', this, newState);
 		}
 
 		connectedCallback() {
+			const id = this.dataset.id;
+			this.innerHTML = this.init;
 			console.log('GeneratorComponent#onConnectedCallBack');
 			this.store.subscribe(this.onStageChange);
 		}
@@ -943,7 +940,6 @@ exports.default = function (store) {
 		}
 
 		init() {
-			const id = this.dataset.id;
 			switch (id) {
 
 				case '1':
@@ -970,7 +966,6 @@ exports.default = function (store) {
 
 				case '2':
 					this.innerHTML = `
-	   
 	   <form class="card"action="">
 	   <div class = "form group">
 			   <div class = "rows">
@@ -985,10 +980,8 @@ exports.default = function (store) {
 				   <div class="actions">
 					   <button id = 'change'> 10 Rupees</button>
 				   </div>
-		   </div>
-	   
+		   </div>  
 	</form>
-	
 	 `;break;
 
 				case '3':
@@ -1012,14 +1005,13 @@ exports.default = function (store) {
 	 `;break;
 			}
 		}
-
 	};
 };
 
 ;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

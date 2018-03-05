@@ -4,11 +4,13 @@ button,
 label,
 textarea,
 footer,
-.story-time{
+.story-time, game-counter{
      box-sizing: border-box;
      font-size: 16px;
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
  }
+
+
 .width-constraint {
     max-width: 80em;
     margin: 0 auto;
@@ -27,17 +29,19 @@ body{
     background-color: black;
     overflow:auto;
 }
-button {
-     padding: 0.5em 1em;
-     background-color:#6666FF;color:white;
-     border: 1px solid #ccc;
-     border-radius: 8px;
-     
+
+game-button button {
+    padding: 0.5em 1em;
+    background-color:#6666FF;color:white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    
 }
-button:hover {
+
+game-button button:hover {
      background-color: #eee;
 }
-button:active {
+game-button button:active {
      background-color: #ccc;
 }
  

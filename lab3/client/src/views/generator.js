@@ -3,41 +3,20 @@ export default function (store) {
 		constructor () {
 			super();
 			this.store = store;
-			this.init();
-			this.onStageChange = this.onStageChange.bind(this);//where = button.js
-
-			// TODO: add click event
-			document.querySelector('#Potion').addEventListener('click',()=>{
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload : 'Potion',
-
-				});
-			});
-			document.querySelector('#Pet').addEventListener('click',()=>{
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload : 'Pet',
-
-				});
-			});
-
-			document.querySelector('#Human').addEventListener('click',()=>{
-				this.store.dispatch({
-					type: 'BUY_GENERATOR',
-					payload : 'Human',
-
-				});
-			});
+			
+		
 		}
 	// TODO: subscribe to store on change event
- handleStageChange(newState)
- {
-	console.log('GeneratorComponent#StateChange',this,newState);
-	 this.store.subscribe(newState);
- }
+ 
+	handleStateChange (newState) {
+		this.innerHTML = this.init();
+		console.log('GeneratorComponentt#stateChange', this, newState);
+	}
 
- connectedCallback(){	
+
+connectedCallback(){	
+	const id = this.dataset.id;
+	this.innerHTML = this.init;
 	console.log('GeneratorComponent#onConnectedCallBack');
 	this.store.subscribe(this.onStageChange);	
  }
@@ -46,10 +25,8 @@ export default function (store) {
 	 this.store.unsubscribe(this.onStageChange);
  }
 
-
  init()
  {
-	const id = this.dataset.id;
 	switch(id){
 	
 		case '1':
@@ -77,7 +54,6 @@ export default function (store) {
 	
 	case '2':
 	   this.innerHTML =`
-	   
 	   <form class="card"action="">
 	   <div class = "form group">
 			   <div class = "rows">
@@ -92,12 +68,9 @@ export default function (store) {
 				   <div class="actions">
 					   <button id = 'change'> 10 Rupees</button>
 				   </div>
-		   </div>
-	   
+		   </div>  
 	</form>
-	
 	 `;break;
-	
 	
 	
 	 case '3':
@@ -120,12 +93,9 @@ export default function (store) {
 	 </form>
 	 `;break;
 	}
-
-
-
  }
-
-}
-
+ }
 };
+
+
 
