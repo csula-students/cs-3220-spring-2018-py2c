@@ -117,7 +117,7 @@ var _generator = __webpack_require__(11);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(12);
+var _storyBook = __webpack_require__(13);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -190,7 +190,33 @@ function main() {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [{
+			type: 'autonomous',
+			name: 'Potion',
+			description: "This Potion increases your attack",
+			rate: 1,
+			quantity: 0,
+			baseCost: 10,
+			ulockValue: 1
+		}, {
+			type: 'autonomous',
+			name: 'Pet',
+			description: " This pet helps you pick up rupee's",
+			rate: 10,
+			quantity: 0,
+			baseCost: 100,
+			ulockValue: 10
+
+		}, {
+
+			type: 'autonomous',
+			name: 'Human',
+			description: "This human companion helps you do leet dmg",
+			rate: 20,
+			quantity: 0,
+			baseCost: 1000,
+			ulockValue: 100
+		}],
 		story: []
 	};
 
@@ -846,7 +872,7 @@ exports.default = function (store) {
 			this.innerHTML = `Rupees : ${newState.counter}`;
 		}
 		connectedCallback() {
-			this.innerHTML = 'Rupees : 0 ';
+			this.innerHTML = `Rupees : 0 `;
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -920,98 +946,132 @@ exports.default = function (store) {
 		constructor() {
 			super();
 			this.store = store;
+			this.onStageChange = this.handleStateChange.bind(this);
 		}
 		// TODO: subscribe to store on change event
 
 		handleStateChange(newState) {
-			this.innerHTML = this.init();
-			console.log('GeneratorComponentt#stateChange', this, newState);
-		}
-
-		connectedCallback() {
-			const id = this.dataset.id;
-			this.innerHTML = this.init;
-			console.log('GeneratorComponent#onConnectedCallBack');
-			this.store.subscribe(this.onStageChange);
-		}
-		disconnectedCallback() {
-			console.log('GeneratorComponent#onDisconnectedCallBack');
-			this.store.unsubscribe(this.onStageChange);
-		}
-
-		init() {
-			switch (id) {
-
-				case '1':
-					this.innerHTML = `
-	
-	<form class="card" action="">
+			const generator = newState.generators[this.dataset.id];
+			this.innerHTML = `<form class="card" action="">
 		<div class ="form group">
 				<div class = "rows">
-			<label for="Potion">Potion</label>
-			<p class = 'holding'> 0</p> 
+			<label for="Potion">${generator.name}</label>
+			<p class = 'holding'> ${generator.quantity}</p> 
 			</div>
-			<p>This potion increases yout attack and restores 
-				.005 hp per second</p>
+			<h5> ${generator.description}</h5>
 		</div>
 		<br>
 		<div class = "rows">
-				<p id ="B_Potion">100/10000</p>
+				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
 					<button id =''>5 Rupees</button>
 				</div>
 		</div>
-	</form>
-	`;break;
-
-				case '2':
-					this.innerHTML = `
-	   <form class="card"action="">
-	   <div class = "form group">
-			   <div class = "rows">
-			   <label for="Pet">Pet</label>
-			   <p class = 'holding'> 0</p>  
-			   </div>
-			   <p>This pet companion picks up 10 Ruby's per second</p>
-		   </div>
-		   <br>
-		   <div class = "rows">
-				   <p id="B_Pet">500/10000</p>
-				   <div class="actions">
-					   <button id = 'change'> 10 Rupees</button>
-				   </div>
-		   </div>  
-	</form>
-	 `;break;
-
-				case '3':
-					this.innerHTML = `
-	 <form class="card"action="">
-	 <div class "form group">
-		 <div class = "rows">
-				 <label for="Adventurer">2nd Adventurer </label>
-				 <p class = 'holding'> 0</p> 
-		 </div>
-			 <p>This second human companion deals 10 dmg per second </p>
-		 </div>
-		 <br>
-		 <div class = "rows">
-				 <p id="B_Adventurer">1200/10000</p>
-				 <div class="actions">
-					 <button id = 'change'> 15 Rupees</button>
-				 </div>
-		 </div>
-	 </form>
-	 `;break;
-			}
+	</form>`;
 		}
+
+		connectedCallback() {
+			const generator = store.state.generators[this.dataset.id];
+			this.innerHTML = `<form class="card" action="">
+		<div class ="form group">
+				<div class = "rows">
+			<label for="Potion">${generator.name}</label>
+			<p class = 'holding'> ${generator.quantity}</p> 
+			</div>
+			<h5> ${generator.description}</h5>
+		</div>
+		<br>
+		<div class = "rows">
+				<p id ="B_Potion">${generator.rate}/10000</p>
+				<div class="actions">
+					<button id =''>5 Rupees</button>
+				</div>
+		</div>
+	</form>`;
+
+			this.store.subscribe(this.onStageChange);
+		}
+		disconnectedCallback() {
+
+			this.store.unsubscribe(this.onStageChange);
+		}
+
+		init() {}
+
 	};
 };
+
+var _generator = __webpack_require__(12);
+
+var _generator2 = _interopRequireDefault(_generator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 ;
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Generator {
+	/**
+  * Create a new generator based on the meta object passing in
+  * @constructor
+  * @param {object} meta - meta object for constructing generator
+  */
+	constructor(meta) {
+		this.type = meta.type;
+		this.name = meta.name;
+		this.description = meta.description;
+		this.rate = meta.rate;
+		this.quantity = meta.quantity;
+		this.baseCost = meta.baseCost;
+		this.unlockValue = meta.unlockValue;
+	}
+
+	/**
+  * getCost computes cost exponentially based on quantity (as formula below)
+  * xt = x0(1 + r)^t
+  * which 
+  * xt is the value of x with t quantity
+  * x0 is base value
+  * r is growth ratio (see constants.growthRatio)
+  * t is the quantity
+  * @return {number} the cost of buying another generator
+  */
+	getCost() {
+		// TODO: implement the function according to doc above
+		var xt = Math.round((this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity)).toFixed(2));
+		return xt;
+	}
+
+	/**
+  * generate computes how much this type of generator generates -
+  * rate * quantity
+  * @return {number} how much this generator generates
+  */
+	generate() {
+		// TODO: implement based on doc above
+		return this.rate * this.quantity;
+	}
+}
+exports.default = Generator;
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

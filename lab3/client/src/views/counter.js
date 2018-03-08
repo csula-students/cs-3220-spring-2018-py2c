@@ -12,7 +12,7 @@ export default function (store) {
 			this.innerHTML = `Rupees : ${newState.counter}`;
 		}
 		connectedCallback () {
-			this.innerHTML = 'Rupees : 0 ';
+			this.innerHTML = `Rupees : 0 `;
 			this.store.subscribe(this.onStateChange);
 		}
 

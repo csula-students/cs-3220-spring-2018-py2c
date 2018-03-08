@@ -77,7 +77,45 @@ function main () {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [
+			{
+				type: 'autonomous',
+				name : 'Potion',
+				description: "This Potion increases your attack",
+				rate: 1,
+				quantity : 0,
+				baseCost: 10,
+				ulockValue :1
+			},
+
+
+
+
+			{
+				type: 'autonomous',
+				name : 'Pet',
+				description: " This pet helps you pick up rupee's",
+				rate: 10,
+				quantity : 0,
+				baseCost: 100,
+				ulockValue :10
+
+			},
+			{
+
+
+
+				type: 'autonomous',
+				name : 'Human',
+				description: "This human companion helps you do leet dmg",
+				rate: 20,
+				quantity : 0,
+				baseCost: 1000,
+				ulockValue :100
+			}			
+
+
+		],
 		story: []
 	};
 

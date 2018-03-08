@@ -53,6 +53,7 @@ game-button button:active {
   */
  .row-container {
      display: flex;
+     
  }
  .row-container {
      flex: 1;
