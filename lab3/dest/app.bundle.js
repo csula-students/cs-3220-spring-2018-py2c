@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -89,31 +89,92 @@ exports.default = {
 "use strict";
 
 
-__webpack_require__(2);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
-var _game = __webpack_require__(5);
+var _constants = __webpack_require__(0);
 
-var _store = __webpack_require__(6);
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Generator {
+	/**
+  * Create a new generator based on the meta object passing in
+  * @constructor
+  * @param {object} meta - meta object for constructing generator
+  */
+	constructor(meta) {
+		this.type = meta.type;
+		this.name = meta.name;
+		this.description = meta.description;
+		this.rate = meta.rate;
+		this.quantity = meta.quantity;
+		this.baseCost = meta.baseCost;
+		this.unlockValue = meta.unlockValue;
+	}
+
+	/**
+  * getCost computes cost exponentially based on quantity (as formula below)
+  * xt = x0(1 + r)^t
+  * which 
+  * xt is the value of x with t quantity
+  * x0 is base value
+  * r is growth ratio (see constants.growthRatio)
+  * t is the quantity
+  * @return {number} the cost of buying another generator
+  */
+	getCost() {
+		// TODO: implement the function according to doc above
+		var xt = Math.round(this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity) * 100) / 100;
+		return xt;
+	}
+
+	/**
+  * generate computes how much this type of generator generates -
+  * rate * quantity
+  * @return {number} how much this generator generates
+  */
+	generate() {
+		// TODO: implement based on doc above
+		return this.rate * this.quantity;
+	}
+}
+exports.default = Generator;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(3);
+
+var _game = __webpack_require__(6);
+
+var _store = __webpack_require__(7);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(7);
+var _reducer = __webpack_require__(8);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(8);
+var _button = __webpack_require__(9);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(9);
+var _counter = __webpack_require__(10);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(10);
+var _example = __webpack_require__(11);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(11);
+var _generator = __webpack_require__(12);
 
 var _generator2 = _interopRequireDefault(_generator);
 
@@ -243,7 +304,7 @@ function main() {
 }
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -444,10 +505,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 var g;
@@ -474,7 +535,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -664,7 +725,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -698,7 +759,7 @@ function increment(state, modifier = 1) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -769,7 +830,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -783,6 +844,10 @@ exports.default = reducer;
 var _constants = __webpack_require__(0);
 
 var _constants2 = _interopRequireDefault(_constants);
+
+var _generator = __webpack_require__(1);
+
+var _generator2 = _interopRequireDefault(_generator);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -799,20 +864,17 @@ function reducer(state, action) {
 
 		case 'BUY_GENERATOR':
 
-			if (action.payload.name === state.generators[0].name && state.counter >= state.generators[0].baseCost) {
-				state.counter -= state.generators[0].baseCost;
-				state.generators[0].quantity++;
+			for (var i = 0; i < state.generators.length; i++) {
+				if (state.generators[i].name === action.payload.name) {
+					var index = i;
+				}
+			}
+			const generator = state.generators[index];
+			if (state.counter >= generator.baseCost) {
+				console.log(this, generator); // debugging
+				state.counter -= generator.baseCost;
+				generator.quantity++;
 
-				return state;
-			} else if (action.payload.name === state.generators[1].name && state.counter >= state.generators[1].baseCost) {
-
-				state.counter -= state.generators[1].baseCost;
-				state.generators[1].quantity++;
-				return state;
-			} else if (action.payload.name === state.generators[2].name && state.counter >= state.generators[2].baseCost) {
-
-				state.counter -= state.generators[2].baseCost;
-				state.generators[2].quantity++;
 				return state;
 			} else {
 				alert("not enough to purchase");
@@ -825,7 +887,7 @@ function reducer(state, action) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -871,7 +933,7 @@ var _constants2 = _interopRequireDefault(_constants);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -905,7 +967,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -953,7 +1015,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -973,7 +1035,7 @@ exports.default = function (store) {
 		// TODO: subscribe to store on change event
 
 		handleStateChange(newState) {
-			const generator = newState.generators[this.dataset.id];
+			const generator = new _generator2.default(newState.generators[this.dataset.id]);
 			this.innerHTML = `<form class="card" action="">
 		<div class ="form group">
 				<div class = "rows">
@@ -986,14 +1048,14 @@ exports.default = function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button id ='Rupee'>${generator.baseCost} Rupees</button>
+					<button type ="button">${generator.getCost()} Rupees</button>
 				</div>
 		</div>
 	</form>`;
 		}
 
 		connectedCallback() {
-			const generator = store.state.generators[this.dataset.id];
+			const generator = new _generator2.default(this.store.state.generators[this.dataset.id]);
 			this.innerHTML = `<form class="card" action="">
 		<div class ="form group">
 				<div class = "rows">
@@ -1006,7 +1068,7 @@ exports.default = function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button id ='Rupee'> ${generator.baseCost} Rupees</button>
+					<button type = "button"> ${generator.getCost()} Rupees</button>
 				</div>
 		</div>
 	</form>`;
@@ -1020,7 +1082,7 @@ exports.default = function (store) {
 					}
 				});
 			});
-
+			console.log(this, this.dataset.id);
 			this.store.subscribe(this.onStageChange);
 		}
 		disconnectedCallback() {
@@ -1031,74 +1093,13 @@ exports.default = function (store) {
 	};
 };
 
-var _generator = __webpack_require__(12);
+var _generator = __webpack_require__(1);
 
 var _generator2 = _interopRequireDefault(_generator);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 ;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _constants = __webpack_require__(0);
-
-var _constants2 = _interopRequireDefault(_constants);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-class Generator {
-	/**
-  * Create a new generator based on the meta object passing in
-  * @constructor
-  * @param {object} meta - meta object for constructing generator
-  */
-	constructor(meta) {
-		this.type = meta.type;
-		this.name = meta.name;
-		this.description = meta.description;
-		this.rate = meta.rate;
-		this.quantity = meta.quantity;
-		this.baseCost = meta.baseCost;
-		this.unlockValue = meta.unlockValue;
-	}
-
-	/**
-  * getCost computes cost exponentially based on quantity (as formula below)
-  * xt = x0(1 + r)^t
-  * which 
-  * xt is the value of x with t quantity
-  * x0 is base value
-  * r is growth ratio (see constants.growthRatio)
-  * t is the quantity
-  * @return {number} the cost of buying another generator
-  */
-	getCost() {
-		// TODO: implement the function according to doc above
-		var xt = Math.round(this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity) * 100) / 100;
-		return xt;
-	}
-
-	/**
-  * generate computes how much this type of generator generates -
-  * rate * quantity
-  * @return {number} how much this generator generates
-  */
-	generate() {
-		// TODO: implement based on doc above
-		return this.rate * this.quantity;
-	}
-}
-exports.default = Generator;
 
 /***/ }),
 /* 13 */
