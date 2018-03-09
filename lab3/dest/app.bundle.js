@@ -188,7 +188,7 @@ main();
 function main() {
 	// TODO: fill the blank based on the theme you have choosen
 	const initialState = {
-		example: 'Hello custom element',
+		//example: 'Hello custom element',
 		counter: 0,
 		generators: [{
 			type: 'autonomous',
@@ -1084,8 +1084,8 @@ class Generator {
   */
 	getCost() {
 		// TODO: implement the function according to doc above
-		var xt = this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity).toFixed(2);
-		return Math.round(xt * 100) / 100;
+		var xt = Math.round(this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity) * 100) / 100;
+		return xt;
 	}
 
 	/**
