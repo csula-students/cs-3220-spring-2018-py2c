@@ -7,6 +7,8 @@ export default function (store) {
 			super();
 			this.store = store;
 			this.onStageChange= this.handleStateChange.bind(this);
+			
+		
 		}
 	// TODO: subscribe to store on change event
  
@@ -24,7 +26,7 @@ export default function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button id =''>5 Rupees</button>
+					<button id ='Rupee'>${generator.baseCost} Rupees</button>
 				</div>
 		</div>
 	</form>`
@@ -46,15 +48,17 @@ export default function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button id =''>5 Rupees</button>
+					<button id ='Rupee'> ${generator.baseCost} Rupees</button>
 				</div>
 		</div>
 	</form>`;
+	
 	this.addEventListener('click', () => {
 		this.store.dispatch({
 			type: 'BUY_GENERATOR',
-			payload :{
-
+			payload: {
+				name: this.store.state.generators[this.dataset.id].name,
+				quantity: this.store.state.generators[this.dataset.id].quantity 
 			}
 		});
 	});

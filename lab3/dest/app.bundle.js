@@ -197,14 +197,14 @@ function main() {
 			rate: 1,
 			quantity: 0,
 			baseCost: 10,
-			ulockValue: 1
+			ulockValue: 10
 		}, {
 			type: 'autonomous',
 			name: 'Pet',
 			description: " This pet helps you pick up rupee's",
 			rate: 10,
 			quantity: 0,
-			baseCost: 100,
+			baseCost: 15,
 			ulockValue: 10
 
 		}, {
@@ -214,8 +214,8 @@ function main() {
 			description: "This human companion helps you do leet dmg",
 			rate: 20,
 			quantity: 0,
-			baseCost: 1000,
-			ulockValue: 100
+			baseCost: 20,
+			ulockValue: 10
 		}],
 		story: []
 	};
@@ -797,6 +797,28 @@ function reducer(state, action) {
 			state.counter++;
 			return state;
 
+		case 'BUY_GENERATOR':
+
+			if (action.payload.name === state.generators[0].name && state.counter >= state.generators[0].baseCost) {
+				state.counter -= state.generators[0].baseCost;
+				state.generators[0].quantity++;
+
+				return state;
+			} else if (action.payload.name === state.generators[1].name && state.counter >= state.generators[1].baseCost) {
+
+				state.counter -= state.generators[1].baseCost;
+				state.generators[1].quantity++;
+				return state;
+			} else if (action.payload.name === state.generators[2].name && state.counter >= state.generators[2].baseCost) {
+
+				state.counter -= state.generators[2].baseCost;
+				state.generators[2].quantity++;
+				return state;
+			} else {
+				alert("not enough to purchase");
+				return state;
+			}
+
 		default:
 			return state;
 	}
@@ -964,7 +986,7 @@ exports.default = function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button id =''>5 Rupees</button>
+					<button id ='Rupee'>${generator.baseCost} Rupees</button>
 				</div>
 		</div>
 	</form>`;
@@ -984,10 +1006,20 @@ exports.default = function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button id =''>5 Rupees</button>
+					<button id ='Rupee'> ${generator.baseCost} Rupees</button>
 				</div>
 		</div>
 	</form>`;
+
+			this.addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: {
+						name: this.store.state.generators[this.dataset.id].name,
+						quantity: this.store.state.generators[this.dataset.id].quantity
+					}
+				});
+			});
 
 			this.store.subscribe(this.onStageChange);
 		}
@@ -995,8 +1027,6 @@ exports.default = function (store) {
 
 			this.store.unsubscribe(this.onStageChange);
 		}
-
-		init() {}
 
 	};
 };
@@ -1054,8 +1084,8 @@ class Generator {
   */
 	getCost() {
 		// TODO: implement the function according to doc above
-		var xt = Math.round((this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity)).toFixed(2));
-		return xt;
+		var xt = this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity).toFixed(2);
+		return Math.round(xt * 100) / 100;
 	}
 
 	/**

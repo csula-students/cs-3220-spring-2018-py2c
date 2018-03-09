@@ -85,7 +85,7 @@ function main () {
 				rate: 1,
 				quantity : 0,
 				baseCost: 10,
-				ulockValue :1
+				ulockValue :10
 			},
 
 
@@ -97,7 +97,7 @@ function main () {
 				description: " This pet helps you pick up rupee's",
 				rate: 10,
 				quantity : 0,
-				baseCost: 100,
+				baseCost: 15,
 				ulockValue :10
 
 			},
@@ -110,8 +110,8 @@ function main () {
 				description: "This human companion helps you do leet dmg",
 				rate: 20,
 				quantity : 0,
-				baseCost: 1000,
-				ulockValue :100
+				baseCost: 20,
+				ulockValue :10
 			}			
 
 
