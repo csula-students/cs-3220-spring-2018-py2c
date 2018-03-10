@@ -31,7 +31,6 @@ export default class Generator {
 		var xt =  Math.round((this.baseCost * Math.pow(1 + constants.growthRatio, this.quantity)) * 100) / 100;
 		return xt;
 	}
-
 	/**
 	 * generate computes how much this type of generator generates -
 	 * rate * quantity
