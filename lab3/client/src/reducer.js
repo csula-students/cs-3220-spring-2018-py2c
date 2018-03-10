@@ -1,5 +1,4 @@
 import constants from './constants';
-import Generator from '../src/models/generator';
 export default function reducer (state, action) {
 	
 	switch (action.type) {
@@ -12,29 +11,29 @@ export default function reducer (state, action) {
 		return state;
 		
 	case 'BUY_GENERATOR':
- 
-	for (var i = 0; i < state.generators.length; i++)
 
-	 {
-		 if (state.generators[i].name===action.payload.name)
+
+		if (action.payload.name === state.generators[0].name && state.counter >= state.generators[0].baseCost)
 		 {
-			var index = i;
-		 }
+			state.counter -= state.generators[0].baseCost;
+			state.generators[0].quantity ++;
+			
+			return state;
+		}else if ( (action.payload.name === state.generators[1].name && state.counter >= state.generators[1].baseCost)) {
+			
+			state.counter -= state.generators[1].baseCost;
+			state.generators[1].quantity ++;
+			return state;
+		}else if ( (action.payload.name === state.generators[2].name && state.counter >= state.generators[2].baseCost)) {
+			
+			state.counter -= state.generators[2].baseCost;
+			state.generators[2].quantity ++;
+			return state;
+	
+		}else {
+			alert("not enough to purchase")
+			return state;
 		}
-		const generator = state.generators[index];
-	if(state.counter >= generator.baseCost)
-	{  
-		 console.log(this,generator);// debugging
-	   	 state.counter -= generator.baseCost;
-	     generator.quantity ++;
-	   
-	   return state;
-
-	}else {
-	   alert("not enough to purchase")
-	   return state;
-   }
-
 	
 	default:
 		return state;

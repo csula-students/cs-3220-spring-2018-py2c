@@ -13,7 +13,7 @@ export default function (store) {
 	// TODO: subscribe to store on change event
  
 	handleStateChange (newState) {
-		const generator = new Generator(newState.generators[this.dataset.id]);
+		const generator = newState.generators[this.dataset.id];
 		this.innerHTML = `<form class="card" action="">
 		<div class ="form group">
 				<div class = "rows">
@@ -26,7 +26,7 @@ export default function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button type ="button">${generator.getCost()} Rupees</button>
+					<button id ='Rupee'>${generator.baseCost} Rupees</button>
 				</div>
 		</div>
 	</form>`
@@ -35,7 +35,7 @@ export default function (store) {
 
 
 	connectedCallback (){	
-	const generator = new Generator(this.store.state.generators[this.dataset.id]);
+	const generator = store.state.generators[this.dataset.id];
 	this.innerHTML = `<form class="card" action="">
 		<div class ="form group">
 				<div class = "rows">
@@ -48,7 +48,7 @@ export default function (store) {
 		<div class = "rows">
 				<p id ="B_Potion">${generator.rate}/10000</p>
 				<div class="actions">
-					<button type = "button"> ${generator.getCost()} Rupees</button>
+					<button id ='Rupee'> ${generator.baseCost} Rupees</button>
 				</div>
 		</div>
 	</form>`;
@@ -62,7 +62,7 @@ export default function (store) {
 			}
 		});
 	});
-	console.log(this,this.dataset.id);
+	
 	this.store.subscribe(this.onStageChange);	
  }
  disconnectedCallback(){
