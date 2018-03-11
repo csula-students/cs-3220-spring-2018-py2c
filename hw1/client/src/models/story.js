@@ -17,7 +17,9 @@ export default class Story {
 	 * @return {boolean} if this story is unlockable
 	 */
 	isUnlockYet (value) {
-		// TODO: implement based on doc
+		if (value){
+			return true;
+		}
 		return false;
 	}
 
@@ -25,6 +27,7 @@ export default class Story {
 	 * unlock simply unlock the story to visible state
 	 */
 	unlock () {
+		this.state = 'visible';
 		// TODO: change the story state to "visible"
 	}
 }
