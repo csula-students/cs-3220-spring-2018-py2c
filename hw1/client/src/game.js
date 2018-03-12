@@ -1,3 +1,5 @@
+import Generator from './models/generator.js'
+
 // default interval as 1 second
 const interval = 1000;
 
@@ -9,8 +11,29 @@ export function loop (store) {
 	// TODO: increment counter based on the generators in the state
 	// hint: read how many "generators" in store and iterate through them to
 	//       count how many value to increment to "resource"
-	// hint: remember to change event through `store.dispatch`
 
+
+
+for (var i = 0; i <store.state.generators.lenght; i++
+){
+	
+	const generator = new Generator(store.state.generators[i])
+	
+	store.dispatch({
+		type: 'INCREMENT',
+		payload: generator.generate()
+		
+	});
+
+}
+
+
+
+
+
+	store.dispatch({
+		type: 'CHECK_STORY'
+	})
 
 	// TODO: triggers stories from story to display state if they are passed
 	//       the `triggeredAt` points

@@ -17,10 +17,13 @@ export default class Story {
 	 * @return {boolean} if this story is unlockable
 	 */
 	isUnlockYet (value) {
-		if (value){
+		if (value >= this.triggeredAt && this.state === 'hidden'){
 			return true;
+		}else
+		{
+			return false;
 		}
-		return false;
+		
 	}
 
 	/**
