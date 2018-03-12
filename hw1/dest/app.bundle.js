@@ -782,16 +782,17 @@ function loop(store) {
 	//       count how many value to increment to "resource"
 
 
-	for (var i = 0; i < store.state.generators.lenght; i++) {
+	var increase = 0;
+	store.state.generators.forEach(element => {
+		increase += element.rate * element.quantity;
+	});
+	console.log(' increasing is at   ', increase);
 
-		const generator = new _generator2.default(store.state.generators[i]);
+	store.dispatch({
+		type: 'INCREMENT',
+		payload: increase
 
-		store.dispatch({
-			type: 'INCREMENT',
-			payload: generator.generate()
-
-		});
-	}
+	});
 
 	store.dispatch({
 		type: 'CHECK_STORY'
@@ -921,6 +922,7 @@ function reducer(state, action) {
 				}
 			}
 			const generator = state.generators[index];
+
 			if (state.counter >= generator.baseCost) {
 				console.log(this, generator); // debugging
 				state.counter -= generator.baseCost;
@@ -941,9 +943,11 @@ function reducer(state, action) {
 			if (story.isUnlockYet(state.counter)) {
 				story.unlock();
 			}
+			return state;
 		case 'INCREMENT':
 
 			state.counter += action.payload;
+
 			return state;
 
 		default:
@@ -1062,7 +1066,7 @@ exports.default = function (store) {
 			this.innerHTML = `Rupees : ${newState.counter}`;
 		}
 		connectedCallback() {
-			this.innerHTML = `Rupees : 0 `;
+			this.innerHTML = 'Rupees : 0 ';
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -1233,6 +1237,7 @@ exports.default = function (store) {
 		}
 
 		connectedCallback() {
+			this.innnerHTML = `<p> Let your Journey Begin</p>`;
 			this.store.subscribe(this.onStateChange);
 		}
 

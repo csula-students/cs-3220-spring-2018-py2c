@@ -23,10 +23,11 @@ export default function reducer (state, action) {
 		 }
 		}
 		const generator = state.generators[index];
-	if(state.counter >= generator.baseCost)
+		
+	if(state.counter >=generator.baseCost)
 	{  
 		 console.log(this,generator);// debugging
-	   	 state.counter -= generator.baseCost;
+	   	 state.counter -=generator.baseCost;
 		 generator.quantity ++;
 		 
 	   
@@ -49,13 +50,13 @@ export default function reducer (state, action) {
   		 {
 	  			 story.unlock();
 	   
-   		}
+		   }
+		   return state;
    case 'INCREMENT':
 
-		   state.counter += action.payload;
+		   state.counter +=action.payload ;
+
 		   return state;
-
-
 	
 	default:
 		return state;

@@ -1,4 +1,4 @@
-/*eslint-env node, jest */
+//*eslint-env node, jest */
 import reducer from '../src/reducer';
 import constants from '../src/constants';
 import * as mock from './mock';

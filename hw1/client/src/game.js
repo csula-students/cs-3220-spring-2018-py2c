@@ -13,19 +13,17 @@ export function loop (store) {
 	//       count how many value to increment to "resource"
 
 
-
-for (var i = 0; i <store.state.generators.lenght; i++
-){
-	
-	const generator = new Generator(store.state.generators[i])
-	
-	store.dispatch({
-		type: 'INCREMENT',
-		payload: generator.generate()
-		
+	var increase = 0;
+	store.state.generators.forEach((element) => {
+		increase += (element.rate * element.quantity);
 	});
+	console.log(' increasing is at   ', increase);
 
-}
+store.dispatch({
+	type: 'INCREMENT',
+	payload: increase
+	
+});
 
 
 

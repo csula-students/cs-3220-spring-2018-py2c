@@ -4,15 +4,17 @@ export default function (store) {
 			super();
 			this.store = store;
 			// TODO: initial DOM rendering of story itself
-
+			
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
 		handleStateChange (newState) {
+			
 			// TODO: display story based on the state "resource" and "stories"
 		}
 
 		connectedCallback () {
+			this.innnerHTML = `<p>Let your Journey Begin</p>`;
 			this.store.subscribe(this.onStateChange);
 		}
 
