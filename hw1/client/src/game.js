@@ -17,17 +17,13 @@ export function loop (store) {
 	store.state.generators.forEach((element) => {
 		increase += (element.rate * element.quantity);
 	});
-	console.log(' increasing is at   ', increase);
+	
 
 store.dispatch({
 	type: 'INCREMENT',
 	payload: increase
 	
 });
-
-
-
-
 
 	store.dispatch({
 		type: 'CHECK_STORY'

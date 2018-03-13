@@ -1,3 +1,5 @@
+
+
 export default function (store) {
 	return class StoryBookComponent extends window.HTMLElement {
 		constructor () {
@@ -9,12 +11,24 @@ export default function (store) {
 		}
 
 		handleStateChange (newState) {
+	
 			
+		var keep_story =`<p>The story begins </p>`;
+		store.state.story.forEach((element) => {
+				if (element.state =='visible')
+				{
+					keep_story +=`<p>${element.description}</p>`
+
+		        }
+	});
+				this.innerHTML = keep_story;
+	
+
 			// TODO: display story based on the state "resource" and "stories"
 		}
 
 		connectedCallback () {
-			this.innnerHTML = `<p>Let your Journey Begin</p>`;
+			this.innerHTML = `<p>The story begins </p>`;
 			this.store.subscribe(this.onStateChange);
 		}
 

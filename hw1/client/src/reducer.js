@@ -15,20 +15,18 @@ export default function reducer (state, action) {
 	case 'BUY_GENERATOR':
  
 	for (var i = 0; i < state.generators.length; i++)
-
 	 {
 		 if (state.generators[i].name===action.payload.name)
 		 {
 			var index = i;
 		 }
 		}
-		const generator = state.generators[index];
-		
-	if(state.counter >=generator.baseCost)
+		const generator = new Generator (state.generators[index]);
+	if(state.counter >=generator.getCost())
 	{  
-		 console.log(this,generator);// debugging
-	   	 state.counter -=generator.baseCost;
-		 generator.quantity ++;
+		console.log(this,generator);
+	   	 state.counter -=generator.getCost().toFixed(2);
+		 state.generators[index].quantity ++;
 		 
 	   
 	   return state;
@@ -41,17 +39,18 @@ export default function reducer (state, action) {
 
    case  'CHECK_STORY':
 
-   	for (var i = 0;i<state.story.length;i++)
-   		{
-	   	 var index = i;
-   		}
-   const story = new Story(state.story[index]);
-   		if (story.isUnlockYet(state.counter))
-  		 {
-	  			 story.unlock();
-	   
-		   }
-		   return state;
+   	for (var i = 0; i < state.story.length; i++) {
+				const story = new Story(state.story[i]);
+
+				if (story.isUnlockYet(state.counter)) {
+					
+					story.unlock(); 
+					
+					state.story[i].state = story.state;
+				}
+			}
+			return state;
+			
    case 'INCREMENT':
 
 		   state.counter +=action.payload ;

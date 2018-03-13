@@ -17,7 +17,7 @@ export default class Story {
 	 * @return {boolean} if this story is unlockable
 	 */
 	isUnlockYet (value) {
-		if (value >= this.triggeredAt ){
+		if (value >= this.triggeredAt){
 			return true;
 		}else
 		{

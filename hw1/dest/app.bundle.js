@@ -786,7 +786,6 @@ function loop(store) {
 	store.state.generators.forEach(element => {
 		increase += element.rate * element.quantity;
 	});
-	console.log(' increasing is at   ', increase);
 
 	store.dispatch({
 		type: 'INCREMENT',
@@ -921,12 +920,11 @@ function reducer(state, action) {
 					var index = i;
 				}
 			}
-			const generator = state.generators[index];
-
-			if (state.counter >= generator.baseCost) {
-				console.log(this, generator); // debugging
-				state.counter -= generator.baseCost;
-				generator.quantity++;
+			const generator = new _generator2.default(state.generators[index]);
+			if (state.counter >= generator.getCost()) {
+				console.log(this, generator);
+				state.counter -= generator.getCost().toFixed(2);
+				state.generators[index].quantity++;
 
 				return state;
 			} else {
@@ -937,13 +935,17 @@ function reducer(state, action) {
 		case 'CHECK_STORY':
 
 			for (var i = 0; i < state.story.length; i++) {
-				var index = i;
-			}
-			const story = new _story2.default(state.story[index]);
-			if (story.isUnlockYet(state.counter)) {
-				story.unlock();
+				const story = new _story2.default(state.story[i]);
+
+				if (story.isUnlockYet(state.counter)) {
+
+					story.unlock();
+
+					state.story[i].state = story.state;
+				}
 			}
 			return state;
+
 		case 'INCREMENT':
 
 			state.counter += action.payload;
@@ -984,7 +986,7 @@ class Story {
   * @return {boolean} if this story is unlockable
   */
 	isUnlockYet(value) {
-		if (value >= this.triggeredAt && this.state === 'hidden') {
+		if (value >= this.triggeredAt) {
 			return true;
 		} else {
 			return false;
@@ -1066,7 +1068,7 @@ exports.default = function (store) {
 			this.innerHTML = `Rupees : ${newState.counter}`;
 		}
 		connectedCallback() {
-			this.innerHTML = 'Rupees : 0 ';
+			this.innerHTML = `Rupees : 0 `;
 			this.store.subscribe(this.onStateChange);
 		}
 
@@ -1233,11 +1235,20 @@ exports.default = function (store) {
 		}
 
 		handleStateChange(newState) {
+
+			var keep_story = `<p>The story begins </p>`;
+			store.state.story.forEach(element => {
+				if (element.state == 'visible') {
+					keep_story += `<p>${element.description}</p>`;
+				}
+			});
+			this.innerHTML = keep_story;
+
 			// TODO: display story based on the state "resource" and "stories"
 		}
 
 		connectedCallback() {
-			this.innnerHTML = `<p> Let your Journey Begin</p>`;
+			this.innerHTML = `<p>The story begins </p>`;
 			this.store.subscribe(this.onStateChange);
 		}
 
