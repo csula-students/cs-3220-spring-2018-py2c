@@ -1,4 +1,4 @@
-package edu.csula.web;
+package main.java.edu.csula.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/guestbook")
-public class GuestbookServlet extends HttpServlet {
+@WebServlet("/guestbook/edit")
+public class EditGuestBookServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
@@ -22,7 +22,7 @@ public class GuestbookServlet extends HttpServlet {
 			 {
 				 html += "<tr>";
 				 html += "<td>" + entry.getUsername() + "says </td><td>" + entry.getComment() + "</td><td>Edit | Delete</td>";
-				 html += "</tr>";
+				 html += " </tr>";
 			
 			 }
 			 html += "</table>";
@@ -30,11 +30,9 @@ public class GuestbookServlet extends HttpServlet {
 			 html += "<h2>Add Comment</h2>";
 			 html += "<label for ='name'>Name:</label>";
 			 html += "<input name = 'username   id = 'name type 'text />";
-			 html += "< textarea  name 'comment' ></textarea>";
-			 html += "<button>Submit</button>";
-			 html += "</form>";
+			 html += "< textarea >";
 
 
-		out.println(html);
+		out.println("<h1>Hello world!</h1>");
 	}
 }
