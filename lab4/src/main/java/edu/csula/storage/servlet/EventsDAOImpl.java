@@ -1,7 +1,7 @@
 package edu.csula.storage.servlet;
 
-import java.util.Collection;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
@@ -38,7 +38,7 @@ public class EventsDAOImpl implements EventsDAO {
 	}
 
 	@Override
-	public Collection<Event> getAll() {
+	public List<Event> getAll() {
 		// TODO: read a list of events from context
 		return new ArrayList<>();
 	}
@@ -58,5 +58,10 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void add(Event event) {
 		// TODO: add a new event to the context
+	}
+
+	@Override
+	public void remove(int id) {
+		// TODO: remove a single event given id
 	}
 }
