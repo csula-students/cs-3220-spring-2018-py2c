@@ -29,7 +29,7 @@ public class AdminEventsServlet extends HttpServlet {
 		html +="<title>Incremental game framework - game information</title>";
 		html +="<link rel=\"stylesheet\" href=\"../app.css\">";
 		html +="</head>";
-		html +="<body classs = \"width-constraint\">";
+		html +="<body classs =\"width-constraint\">";
 		html +="<header>";
 		html +="<h1>Incremental game framework</h1>";
 		html +="<nav class=\"main-nav\">";
@@ -40,28 +40,55 @@ public class AdminEventsServlet extends HttpServlet {
 		html +="<a class=\"active\" href=\"event-meta.html\">Events</a>";
 		html +="</nav>";
 		html +="</header>";
+
 		html +="<main>";
-		html +="<div class =\"row-container\">";
-		html +="<form class = \"fill card\" actions = \"\">";
-		html += "<div class \"form-group\">";
+		html +="<div class=\"row-container\">";
+		html +="<form class=\"fill card\" actions = \"\">";
+		html += "<div class=\"form-group\">";
 		html += "<label for=\"name\">Event Name</label>";
-		html += "<input type=\"text\" id=\"name\">";
+		html += "<input type=\"text\" id=\"names\" name =\"name\">";
 		html += "</div>";
 
 		html += "<div class=\"form-group\">";
         html += "<label for=\"description\">Event Description</label>";
-        html += "<textarea id=\"description\"></textarea>";            
+        html += "<textarea id=\"description\"name =\"descTextArea\" ></textarea>";            
 		html += "</div>";   
 		
         html += "<div class=\"form-group\">" ;       
 		html += "<label for=\"trigger_at\">Trigger at</label>";      
-		html += "<input type=\"number\" id=\"trigger_at\">";          
+		html += "<input type=\"number\" id=\"trigger_at\" name =\"triggerInput\">";          
 		html += "</div>" ; 
 
 		html += "<div class=\"actions\">";    
-		html += " <button>Save</button>";   
+		html += "<button>Save</button>";   
 		html += "</div>";     
 		html += "</form>";
+		html += "</div>";
+		
+		html += "<div>";
+		html +=" <table class=\"info-table table-with-elipsis\">";
+		html +=	"<thead>";
+		html +=	"<tr>";
+		html +=	"<th>Name</th>";
+		html +=	"<th>Description</th>";
+		html +=	"<th>Trigger Point</th>";
+		html +=	"<th>Action</th>";
+		html +=	"</tr>";
+		html +=	"</thead>";
+		html +=	"<tbody>";
+for (Event event : events){
+		html +=	"<tr>";
+		html +=	"<td>"+ event.getName()+"</td>";
+		html +=	"<td>"+event.getDescription()+"</td>";
+		html +=	"<td>"+event.getTriggerAt()+"</td>";
+		html +=	"<td>";
+		html +=	"</tr>";
+
+}
+
+		html +=	"</tbody>";
+		html +="</table>";
+		html += "</div>";
 		html += "</div>";
 		html += "</main>";
 		html += "</body>";
@@ -78,10 +105,12 @@ public class AdminEventsServlet extends HttpServlet {
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-
+		EventsDAOImpl dao = (EventsDAOImpl) getServletContext().getAttribute("dao");
+		String name = request.getParameter("name");
+		String description = request.getParameter("descTextArea");
+		int trigger = Integer.parseInt(request.getParameter("triggerInput"));
+		dao.add(new Event(dao.getAll().size() + 1, name, description, trigger));
+		response.sendRedirect("events");
 
 		// TODO: handle upsert transaction
 	}
