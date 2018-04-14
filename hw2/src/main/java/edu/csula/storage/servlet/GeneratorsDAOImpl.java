@@ -40,8 +40,12 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 
 	@Override
 	public List<Generator> getAll() {
-		// TODO: get a list of generators from the context
-		return new ArrayList<>();
+		
+		List<Generator> events = (List<Generator>) context.getAttribute(CONTEXT_NAME);
+		if(events == null){
+			return new ArrayList<Generator>();
+		}
+		return events;
 	}
 
 	@Override
@@ -57,11 +61,23 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 
 	@Override
 	public void add(Generator generator) {
-		// TODO: add a new generator to the context
+		
+		List<Generator> newone = getAll();
+		newone.add(event);
+		context.setAttribute(CONTEXT_NAME,newone);
 	}
 
 	@Override
 	public void remove(int id) {
-		// TODO: remove a single generator from the context
+		
+		List<Generator> newone = this.getAll();
+
+		for (int i = 0; i < newone.size(); i++){
+			if (newone.get(i).getId() == id){
+				newone.remove(i);
+			}
+		}
+
+		this.context.setAttribute(CONTEXT_NAME,newone);
 	}
 }
