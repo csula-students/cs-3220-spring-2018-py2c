@@ -63,6 +63,7 @@ public class EditEventServlet extends HttpServlet {
 		html += "</div>";     
 		html += "</form>";
 		html += "</div>";
+		html += "</html>";
 		
 		
 
@@ -86,7 +87,7 @@ public void doPost( HttpServletRequest request, HttpServletResponse response) th
 		int triggerAt = Integer.parseInt(request.getParameter("triggerInput"));
 		Event event = new Event(id, name, description, triggerAt);
 		dao.set(id, event);
-		response.sendRedirect("/admin/events");
+		response.sendRedirect("events");
 		
 		
 

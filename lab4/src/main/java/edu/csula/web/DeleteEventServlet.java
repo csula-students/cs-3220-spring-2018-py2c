@@ -25,7 +25,7 @@ public class DeleteEventServlet extends HttpServlet {
 			events.remove(i);
 		}
 	}
-	response.sendRedirect("/admin/events");
+	response.sendRedirect("events");
 
   
    }
