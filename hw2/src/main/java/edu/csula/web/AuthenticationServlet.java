@@ -17,7 +17,28 @@ public class AuthenticationServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		// TODO: render the authentication page HTML
-		out.println("<h1>Hello login servlet!</h1>");
+		out.println("<!DOCTYPE html>");
+		out.println("<html lang=\"en\">");
+		out.println("<head>");
+		out.println("<meta charset=\"UTF-8\">");
+		out.println("<title>Incremental game framework Login</title>");
+		out.println("<link rel=\"stylesheet\" href=\"app.css\">");
+		out.println("</head>");
+		out.println(" <body class=\"width-constraint\">");
+		out.println("<main>");
+		out.println("<form class=\"card\" method=\"POST\">");
+		out.println("<div class=\"form-group\">");
+		out.println("<label for=\"name\">Username</label>");
+		out.println("<input type=\"text\" id=\"name\">");
+		out.println("</div>");
+		out.println("<div class=\"actions\">");
+		out.println("<button>Log in</button>");
+		out.println("</div>");
+		out.println("</form>");
+		out.println("</main>");
+		out.println("</body>");
+		out.println("</html>");
+		
 	}
 
 	@Override

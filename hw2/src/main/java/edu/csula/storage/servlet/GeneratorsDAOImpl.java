@@ -50,20 +50,32 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 
 	@Override
 	public Optional<Generator> getById(int id) {
-		// TODO: get a certain generator from context
+		for (Generator event : this.getAll()) {
+			if (event.getId() == id) {
+				return Optional.of(event);
+			}
+		}
+		
 		return Optional.empty();
+		
 	}
 
 	@Override
 	public void set(int id, Generator generator) {
-		// TODO: change a certain generator from context
+		List<Generator> newone  = getAll();
+		for (int i = 0 ; i < newone .size() ; i++) {
+			if (newone.get(i).getId() == id) {
+				newone.set(i ,generator);
+			}
+		}
+		context.setAttribute(CONTEXT_NAME,newone );
 	}
 
 	@Override
 	public void add(Generator generator) {
 		
 		List<Generator> newone = getAll();
-		newone.add(event);
+		newone.add(generator);
 		context.setAttribute(CONTEXT_NAME,newone);
 	}
 
