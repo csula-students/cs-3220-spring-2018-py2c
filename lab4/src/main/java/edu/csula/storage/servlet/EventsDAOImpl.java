@@ -49,8 +49,6 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public Optional<Event> getById(int id) {
-		// TODO: get a certain event given its id from context (see getAll() on
-		// getting a list first and get a certain one from the list)
 		for (Event event : this.getAll()) {
 			if (event.getId() == id) {
 				return Optional.of(event);
@@ -62,7 +60,7 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public void set(int id, Event event) {
-		// TODO: set a certain event given id to be different from context
+		
 	List<Event> newone  = getAll();
 		for (int i = 0 ; i < newone .size() ; i++) {
 			if (newone.get(i).getId() == id) {
@@ -74,7 +72,7 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public void add(Event event) {
-		// TODO: add a new event to the context
+	
 		List<Event> newone = getAll();
 		newone.add(event);
 		context.setAttribute(CONTEXT_NAME,newone);
@@ -84,7 +82,7 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public void remove(int id) {
-		// TODO: remove a single event given id
+	
 		List<Event> newone  = getAll();
 
 		for (int i = 0 ; i < newone .size() ; i++) {

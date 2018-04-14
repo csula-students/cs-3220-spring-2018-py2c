@@ -23,8 +23,8 @@ public class AdminEventsServlet extends HttpServlet {
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
 	/*	
-		the css was not working with this  had to go back to 
-		to outprint 
+		the css was not displaying correctly  had to go back to 
+		to outprint for it to do it correctly 
 
 
 		String html = "";
@@ -160,6 +160,9 @@ public class AdminEventsServlet extends HttpServlet {
 		out.println("<td>"+ event.getDescription()+"</td>");
 		out.println("<td>"+ event.getTriggerAt()+"</td>");
 		out.println("<td>");
+		out.println("<a href=\"EditEventServlet?id=" + event.getId() +"\">Edit</a>");
+			out.println("|");
+			out.println("<a href=\"DeleteEventServlet?id=" + event.getId() + "\">Delete</a>");
 		out.println("</tr>");
 		}
 		out.println("</tbody>");
