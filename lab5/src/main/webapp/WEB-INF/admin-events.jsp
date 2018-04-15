@@ -103,8 +103,8 @@
                                     <td>${event.getDescription()}</td>
                                     <td>${event.getTriggerAt()}</td>
                                     <td>
-                                            <a href="../admin/EditEventServlet?id=${item.getId()}">Edit</a>
-                                            <a href="../admin/DeleteEventServlet?id=${item.getId()}">delete</a> 
+                                            <a href="../admin/EditEventServlet?id=${event.getId()}">Edit</a>|
+                                            <a href="../admin/DeleteEventServlet?id=${event.getId()}">delete</a> 
                                     </td>
                                 </tr>	
                                 </c:forEach>
