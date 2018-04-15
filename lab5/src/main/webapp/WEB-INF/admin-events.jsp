@@ -96,7 +96,18 @@
                 </thead>
 
                 <tbody>
-
+                        <c:forEach items="${events}" var="event">
+                                <tr>
+                                    
+                                    <td>${event.getName()}</td>
+                                    <td>${event.getDescription()}</td>
+                                    <td>${event.getTriggerAt()}</td>
+                                    <td>
+                                            <a href="../admin/EditEventServlet?id=${item.getId()}">Edit</a>
+                                            <a href="../admin/DeleteEventServlet?id=${item.getId()}">delete</a> 
+                                    </td>
+                                </tr>	
+                                </c:forEach>
                 </tbody>
 
             </table>

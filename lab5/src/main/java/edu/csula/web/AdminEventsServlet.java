@@ -22,7 +22,7 @@ public class AdminEventsServlet extends HttpServlet {
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
 	
-
+		request.setAttribute("events", events);
 		request.getRequestDispatcher("../WEB-INF/admin-events.jsp")
           .forward(request, response);
 
@@ -40,5 +40,7 @@ public class AdminEventsServlet extends HttpServlet {
 		Event event = new Event(events.size(), name, description, triggerAt);
 		dao.add(event);
 		response.sendRedirect("events");
+		
+		
 	}
 }
