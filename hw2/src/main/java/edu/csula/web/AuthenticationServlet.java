@@ -16,7 +16,7 @@ public class AuthenticationServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		// TODO: render the authentication page HTML
+		
 		out.println("<!DOCTYPE html>");
 		out.println("<html lang=\"en\">");
 		out.println("<head>");
