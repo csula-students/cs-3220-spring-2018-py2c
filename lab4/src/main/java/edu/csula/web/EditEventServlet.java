@@ -45,17 +45,17 @@ public class EditEventServlet extends HttpServlet {
 		html +="<form class=\"fill card\" method= \"POST\">";
 		html += "<div class=\"form-group\">";
 		html += "<label for=\"name\">Event Name </label>";
-		html += "<input type=\"text\" id=\"names\" name =\"name\""+ event.getName() + ">";
+		html += "<input type=\"text\" id=\"names\" name =\"name\">";
 		html += "</div>";
 
 		html += "<div class=\"form-group\">";
         html += "<label for=\"description\">Event Description</label>";
-        html += "<textarea id=\"description\"name =\"descTextArea\" >" + event.getDescription() + "</textarea>";            
+        html += "<textarea id=\"description\"name =\"descTextArea\" ></textarea>";            
 		html += "</div>";   
 		
         html += "<div class=\"form-group\">" ;       
 		html += "<label for=\"trigger_at\">Trigger at</label>";      
-		html += "<input type=\"number\" id=\"trigger_at\" name =\"triggerInput\""+ event.getTriggerAt() + ">";          
+		html += "<input type=\"number\" id=\"trigger_at\" name =\"triggerInput\">";          
 		html += "</div>" ; 
 
 		html += "<div class=\"actions\">";    
