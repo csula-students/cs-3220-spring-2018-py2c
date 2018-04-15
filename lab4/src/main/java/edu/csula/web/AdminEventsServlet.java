@@ -22,90 +22,15 @@ public class AdminEventsServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
-	/*	
-		the css was not displaying correctly  had to go back to 
-		to outprint for it to do it correctly 
-
-
-		String html = "";
-		html +="<html lang=\"en\">";
-		html +="<head>";
-		html +="<meta charset=\"UTF-8\">";
-		html +="<title>Incremental game framework - game information</title>";
-		html +="<link rel=\"stylesheet\" href=\"../app.css\">";
-		html +="</head>";
-		html +="<body classs =\"width-constraint\">";
-		html +="<header>";
-		html +="<h1>Incremental game framework</h1>";
-		html +="<nav class=\"main-nav\">";
-		html +="<a href=\"game-info.html\">Game Information</a>";
-		html +=" | ";
-		html +="<a href=\"generator-meta.html\">Generators</a>";
-		html +=" | ";
-		html +="<a class=\"active\" href=\"event-meta.html\">Events</a>";
-		html +="</nav>";
-		html +="</header>";
-
-		html +="<main>";
-		html +="<div class=\"row-container\">";
-		html +="<form class=\"fill card\" method= \"POST\">";
-		html += "<div class=\"form-group\">";
-		html += "<label for=\"name\">Event Name</label>";
-		html += "<input type=\"text\" id=\"names\" name =\"name\">";
-		html += "</div>";
-
-		html += "<div class=\"form-group\">";
-        html += "<label for=\"description\">Event Description</label>";
-        html += "<textarea id=\"description\"name =\"descTextArea\" ></textarea>";            
-		html += "</div>";   
-		
-        html += "<div class=\"form-group\">" ;       
-		html += "<label for=\"trigger_at\">Trigger at</label>";      
-		html += "<input type=\"number\" id=\"trigger_at\" name =\"triggerInput\">";          
-		html += "</div>" ; 
-
-		html += "<div class=\"actions\">";    
-		html += "<button>Save</button>";   
-		html += "</div>";     
-		html += "</form>";
-		html += "</div>";
-		
-		html += "<div>";
-		html +=" <table class=\"info-table table-with-elipsis\">";
-		html +=	"<thead>";
-		html +=	"<tr>";
-		html +=	"<th>Name</th>";
-		html +=	"<th>Description</th>";
-		html +=	"<th>Trigger Point</th>";
-		html +=	"<th>Action</th>";
-		html +=	"</tr>";
-		html +=	"</thead>";
-		html +=	"<tbody>";
-		for (Event event : events)
-			{
-		html +=	"<tr>";
-		html +=	"<td>"+ event.getName()+"</td>";
-		html +=	"<td>"+ event.getDescription()+"</td>";
-		html +=	"<td>"+ event.getTriggerAt()+"</td>";
-		html +=	"<td>";
-		html +=	"</tr>";
-		}
-		html +=	"</tbody>";
-		html +="</table>";
-		html += "</div>";
-		html += "</div>";
-		html += "</main>";
-		html += "</body>";
-		html += "</html>";
-		*/
+	
 		out.println("<html lang=\"en\">");
 		out.println("<head>");
 		out.println("<meta charset=\"UTF-8\">");
 		out.println("<title>Incremental game framework - game information</title>");
 		out.println("<link rel=\"stylesheet\" href=\"../app.css\">");
 		out.println("</head>");
-		out.println("</head>");
-		out.println("<body classs =\"width-constraint\">");
+		
+		out.println("<body class =\"width-constraint\">");
 		out.println("<header>");
 		out.println("<h1>Incremental game framework</h1>");
 		out.println("<nav class=\"main-nav\">");
@@ -118,7 +43,6 @@ public class AdminEventsServlet extends HttpServlet {
 		out.println("</header>");
 		
 		out.println("<main>");
-		out.println("<div class=\"row-container\">");
 		out.println("<div class=\"row-container\">");
 		out.println("<form class=\"fill card\" method= \"POST\">");
 		out.println("<div class=\"form-group\">");
@@ -140,7 +64,7 @@ public class AdminEventsServlet extends HttpServlet {
 		out.println("<button>Save</button>");
 		out.println("</div>");
 		out.println("</form>");
-		out.println("</div>");
+	
 
 		out.println("<div>");
 		out.println("<table class=\"info-table table-with-elipsis\">");

@@ -37,7 +37,7 @@ public class EditEventServlet extends HttpServlet {
 		html +="<title>Incremental game framework - game information Edit</title>";
 		html +="<link rel=\"stylesheet\" href=\"../app.css\">";
 		html +="</head>";
-		html +="<body classs =\"width-constraint\">";
+		html +="<body class =\"width-constraint\">";
 		html +="<header>";
 		html +="<h1>Incremental game framework</h1>";
 		html +="</header>";
@@ -62,7 +62,6 @@ public class EditEventServlet extends HttpServlet {
 		html += "<button>Save</button>";   
 		html += "</div>";     
 		html += "</form>";
-		html += "</div>";
 		html += "</html>";
 		
 		
