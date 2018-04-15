@@ -30,44 +30,8 @@ public class EditEventServlet extends HttpServlet {
 			}
 		}
 		
-		String html = "";
-		html +="<html lang=\"en\">";
-		html +="<head>";
-		html +="<meta charset=\"UTF-8\">";
-		html +="<title>Incremental game framework - game information Edit</title>";
-		html +="<link rel=\"stylesheet\" href=\"../app.css\">";
-		html +="</head>";
-		html +="<body class =\"width-constraint\">";
-		html +="<header>";
-		html +="<h1>Incremental game framework</h1>";
-		html +="</header>";
-		html +="<div class=\"row-container\">";
-		html +="<form class=\"fill card\" method= \"POST\">";
-		html += "<div class=\"form-group\">";
-		html += "<label for=\"name\">Event Name </label>";
-		html += "<input type=\"text\" id=\"names\" name =\"name\""+ event.getName() + ">";
-		html += "</div>";
-
-		html += "<div class=\"form-group\">";
-        html += "<label for=\"description\">Event Description</label>";
-        html += "<textarea id=\"description\"name =\"descTextArea\" >" + event.getDescription() + "</textarea>";            
-		html += "</div>";   
-		
-        html += "<div class=\"form-group\">" ;       
-		html += "<label for=\"trigger_at\">Trigger at</label>";      
-		html += "<input type=\"number\" id=\"trigger_at\" name =\"triggerInput\""+ event.getTriggerAt() + ">";          
-		html += "</div>" ; 
-
-		html += "<div class=\"actions\">";    
-		html += "<button>Save</button>";   
-		html += "</div>";     
-		html += "</form>";
-		html += "</html>";
-		
-		
-
-		out.println(html);
-
+		 request.getRequestDispatcher("/WEB-INF/admin-edit-events.jsp")
+		.forward(request, response);
 
 	}
 
