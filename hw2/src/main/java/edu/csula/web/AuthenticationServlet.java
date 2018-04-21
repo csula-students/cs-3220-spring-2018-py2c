@@ -60,7 +60,6 @@ public class AuthenticationServlet extends HttpServlet {
 		UsersDAO dao = new UsersDAOImpl(request.getSession());
 		if (dao.authenticate(username, password)){
 			response.sendRedirect("events");
-			response.sendRedirect("generators");
 		}
 		else{
 			response.sendRedirect("auth");
