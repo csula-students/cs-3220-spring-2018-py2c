@@ -2,17 +2,15 @@ package edu.csula.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
-
 import java.util.Collection;
 
 import edu.csula.storage.servlet.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
-
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
 import edu.csula.models.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +27,8 @@ public class AdminGeneratorsServlet extends HttpServlet {
 			Collection<Generator> generators = dao.getAll();
 			System.out.println(generators);
 			UsersDAO userDao = new UsersDAOImpl(request.getSession());
-		
+
+			if (userDao.getAuthenticatedUser().isPresent()){
 		out.println("<html lang=\"en\">");
 		out.println("<head>");
 		out.println("<meta charset=\"UTF-8\">");
@@ -43,12 +42,14 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		out.println("<nav class=\"main-nav\">");
 		out.println("<a href=\"game-info.html\">Game Information</a>");
 		out.println(" | ");
-		out.println("<a href=\"generator-meta.html\">Generators</a>");
+		out.println("<a href=\"generators\">Generators</a>");
 		out.println(" | ");
-		out.println("<a class=\"active\" href=\"event-meta.html\">Events</a>");
+		out.println("<a href=\"events\">Events</a>");
+		out.println("<a id=\"log\" href = \" auth\"> Log out</a>");
 		out.println("</nav>");
 		out.println("</header>");
 
+		
 		out.println("<main>");
 		out.println("<div class=\"row-container\">");
 		out.println("<form class=\"fill card\" method= \"POST\">");
@@ -87,9 +88,11 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		out.println("<thead>");
 		out.println("<tr>");
 		out.println("<th>Name</th>");
+		out.println("<th>Description</th>");
 		out.println("<th>Rate</th>");
 		out.println("<th>Cost</th>");
 		out.println("<th>Unlock</th>");
+		out.println("<th>Action</th>");
 		out.println("</tr>");
 		out.println("</thead>");
 		out.println("<tbody>");
@@ -97,11 +100,12 @@ public class AdminGeneratorsServlet extends HttpServlet {
 			{
 		out.println("<tr>");
 		out.println("<td>"+ generator.getName()+"</td>");
+		out.println("<td>"+ generator.getDescription()+"</td>");
 		out.println("<td>"+ generator.getRate()+"</td>");
 		out.println("<td>"+ generator.getBaseCost()+"</td>");
 		out.println("<td>"+ generator.getUnlockAt()+"</td>");
-		out.println("<td>"+ generator.getBaseCost()+"</td>");
-		out.println("<td>"+ generator.getDescription()+"</td>");
+		
+	
 		out.println("<td>");
 		out.println("<a href=\"EditgenServlet?id=" + generator.getId() +"\">Edit</a>");
 			out.println("|");
@@ -115,6 +119,11 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		out.println("</main>");
 		out.println("</body>");
 		out.println("</html>");
+	}
+	else
+	{
+		response.sendRedirect("auth");
+	}
 		
 
 	}
@@ -134,6 +143,6 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		int unlockAt = Integer.parseInt(request.getParameter("unlock"));
 		Generator generator = new Generator(generators.size(), name, description, rate, baseCost, unlockAt);
 		dao.add(generator);
-		response.sendRedirect("events");
+		response.sendRedirect("generators");
 }
 }

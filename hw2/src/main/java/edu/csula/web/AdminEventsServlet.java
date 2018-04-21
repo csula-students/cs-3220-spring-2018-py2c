@@ -9,7 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
 import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
@@ -22,7 +23,9 @@ public class AdminEventsServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
+		UsersDAO userDao = new UsersDAOImpl(request.getSession());
 	
+		if (userDao.getAuthenticatedUser().isPresent()){
 		out.println("<html lang=\"en\">");
 		out.println("<head>");
 		out.println("<meta charset=\"UTF-8\">");
@@ -36,9 +39,9 @@ public class AdminEventsServlet extends HttpServlet {
 		out.println("<nav class=\"main-nav\">");
 		out.println("<a href=\"game-info.html\">Game Information</a>");
 		out.println(" | ");
-		out.println("<a href=\"generator-meta.html\">Generators</a>");
+		out.println("<a href=\"generators\">Generators</a>");
 		out.println(" | ");
-		out.println("<a class=\"active\" href=\"event-meta.html\">Events</a>");
+		out.println("<a href=\"events\">Events</a>");
 		out.println("</nav>");
 		out.println("</header>");
 		
@@ -97,6 +100,10 @@ public class AdminEventsServlet extends HttpServlet {
 		out.println("</main>");
 		out.println("</body>");
 		out.println("</html>");
+	}
+	else{
+		response.sendRedirect("auth");
+	}
 
 	}
 
