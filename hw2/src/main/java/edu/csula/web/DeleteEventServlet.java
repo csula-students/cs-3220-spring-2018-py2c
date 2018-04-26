@@ -19,6 +19,7 @@ public class DeleteEventServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	  int id = Integer.parseInt(request.getParameter("id"));
 	  EventsDAO dao = new EventsDAOImpl(getServletContext());
+	  List <Event> events = dao.getall();
 	  dao.remove(id);
 	response.sendRedirect("events");
 
