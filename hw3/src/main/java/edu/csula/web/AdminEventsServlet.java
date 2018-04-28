@@ -9,27 +9,48 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
 import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
-import edu.csula.models.Event;
+import edu.csula.models;
 
 @WebServlet("/admin/events")
 public class AdminEventsServlet extends HttpServlet {
 	@Override
-	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		// TODO: render the events page HTML
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
-		Collection<Event> events = dao.getAll();
-		System.out.println(events);
-		out.println("<h1>Hello events servlet!</h1>");
-	}
-
-
-	@Override
-	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO: handle upsert transaction
+	public class AdminEventsServlet extends HttpServlet {
+		@Override
+		public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			UsersDAO userDao = new UsersDAOImpl(request.getSession());
+	
+			if (userDao.getAuthenticatedUser().isPresent()){
+			EventsDAO dao = new EventsDAOImpl(getServletContext());
+			Collection<Event> events = dao.getAll();
+		
+			request.setAttribute("events", events);
+			request.getRequestDispatcher("../WEB-INF/admin-events.jsp")
+			  .forward(request, response);
+			}
+			else{
+				response.sendRedirect("auth");
+			}
+	
+		}
+	
+	
+	
+		@Override
+		public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			EventsDAO dao = new EventsDAOImpl(getServletContext());
+			Collection<Event> events = dao.getAll();
+			String name = request.getParameter("name");
+			String description = request.getParameter("descTextArea");   
+			int triggerAt = Integer.parseInt(request.getParameter("triggerInput"));
+			Event event = new Event(events.size(), name, description, triggerAt);
+			dao.add(event);
+			response.sendRedirect("events");
+			
+			
+		}
 	}
 }
