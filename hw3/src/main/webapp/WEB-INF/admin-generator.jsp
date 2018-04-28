@@ -28,7 +28,7 @@
 
             | 
 
-            <a href="events">Events</a>"
+            <a href="generatorss">generatorss</a>"
 
         </nav>
 
@@ -43,7 +43,7 @@
 
             <div class="form-group">
 
-                <label for="name">Event Name</label>
+                <label for="name">generators Name</label>
 
                 <input type="text" id="names" name ="name">
 
@@ -52,7 +52,7 @@
 
             <div class="form-group">
 
-                <label for="description">Event Description</label>
+                <label for="description">generators Description</label>
 
                 <textarea id="description"name ="descTextArea" ></textarea>
 
@@ -61,9 +61,23 @@
 
             <div class="form-group">
 
-                <label for="trigger_at">Trigger at</label>
+                <label for="rate">Generator rate</label>
 
-                <input type="number" id="trigger_at" name ="triggerInput">
+                <input type="number" id="rate" name = "rate">
+
+            </div>
+            <div class="form-group">
+
+                <label for="cost">Base cost</label>
+
+                <input type="number" id="cost" name = "cost">
+
+            </div>
+            <div class="form-group">
+
+                <label for="unlock_at">Unlock At</label>
+
+                <input type="number" id="unlock_at" name = "unlock">
 
             </div>
 
@@ -82,13 +96,12 @@
                 <thead>
 
                     <tr>
-
+                       
                         <th>Name</th>
-
                         <th>Description</th>
-
-                        <th>Trigger Point</th>
-
+                        <th>Rate</th>
+                        <th>Cost</th>
+                        <th>Unlock</th>
                         <th>Action</th>
 
                     </tr>
@@ -96,15 +109,17 @@
                 </thead>
 
                 <tbody>
-                        <c:forEach items="${events}" var="event">
+                        <c:forEach items="${generators}" var="generator">
                                 <tr>
                                     
-                                    <td>${event.getName()}</td>
-                                    <td>${event.getDescription()}</td>
-                                    <td>${event.getTriggerAt()}</td>
+                                    <td>${generators.getName()}</td>
+                                    <td>${generators.getDescription()}</td>
+                                    <td>${generators.getRate()}</td>
+                                    <td>${generators.getCost()}</td>
+                                    <td>${generators.getUnlockAt()}</td>
                                     <td>
-                                            <a href="EditEventServlet?id=${event.getId()}">Edit</a>|
-                                            <a href="DeleteEventServlet?id=${event.getId()}">delete</a> 
+                                            <a href="EditgenServlet?id=${generators.getId()}">Edit</a>|
+                                            <a href="DeletegenServlet?id=${generators.getId()}">delete</a> 
                                     </td>
                                 </tr>	
                                 </c:forEach>
