@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -24,14 +25,17 @@
 
             | 
 
-            <a href="generators">Generators</a>"
+            <a href="generators">Generators</a>
 
             | 
 
-            <a href="generatorss">generatorss</a>"
+            <a href="events">Events</a>
+
+            | 
+            <a id="log" href="auth">Log out</a>
 
         </nav>
-
+     
     </header>
 
 
@@ -43,18 +47,18 @@
 
             <div class="form-group">
 
-                <label for="name">generators Name</label>
+                <label for="name">Generators Name</label>
 
-                <input type="text" id="names" name ="name">
+                <input type="text" id="name" name ="name">
 
             </div>
 
 
             <div class="form-group">
 
-                <label for="description">generators Description</label>
+                <label for="description">Generators Description</label>
 
-                <textarea id="description"name ="descTextArea" ></textarea>
+                <textarea id="description"name ="description" ></textarea>
 
             </div>
 
@@ -109,17 +113,16 @@
                 </thead>
 
                 <tbody>
-                        <c:forEach items="${generators}" var="generator">
+                        <c:forEach items="${generatorentry}" var="generator">
                                 <tr>
-                                    
-                                    <td>${generators.getName()}</td>
-                                    <td>${generators.getDescription()}</td>
-                                    <td>${generators.getRate()}</td>
-                                    <td>${generators.getCost()}</td>
-                                    <td>${generators.getUnlockAt()}</td>
+                                    <td>${generator.getName()}</td>
+                                    <td>${generator.getDescription()}</td>
+                                    <td>${generator.getRate()}</td>
+                                    <td>${generator.getBaseCost()}</td>
+                                    <td>${generator.getUnlockAt()}</td>
                                     <td>
-                                            <a href="EditgenServlet?id=${generators.getId()}">Edit</a>|
-                                            <a href="DeletegenServlet?id=${generators.getId()}">delete</a> 
+                                            <a href="EditgenServlet?id=${generator.getId()}">Edit</a>|
+                                            <a href="DeletegenServlet?id=${generator.getId()}">Delete</a> 
                                     </td>
                                 </tr>	
                                 </c:forEach>

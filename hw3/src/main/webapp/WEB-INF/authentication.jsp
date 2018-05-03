@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 		<html lang="en">
 		<head>
 		<meta charset="UTF-8">
@@ -22,7 +22,7 @@
 		</div>
 		<div class="actions">
 		<input type="submit" value="Log in">
-	</div>
+		</div>
 		</form>
 		</main>
 		</body>

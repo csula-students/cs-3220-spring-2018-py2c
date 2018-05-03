@@ -9,16 +9,30 @@ export default function (store) {
 		}
 
 		handleStateChange (newState) {
-			// TODO: display story based on the state "resource" and "stories"
-		}
-
-		connectedCallback () {
-			this.store.subscribe(this.onStateChange);
-		}
-
-		disconnectedCallback () {
-			this.store.unsubscribe(this.onStateChange);
-		}
-	};
+	
+			
+			var keep_story =`<p>The story begins </p>`;
+			store.state.story.forEach((element) => {
+					if (element.state =='visible')
+					{
+						keep_story +=`<p>${element.description}</p>`
+	
+					}
+		});
+					this.innerHTML = keep_story;
+		
+	
+				// TODO: display story based on the state "resource" and "stories"
+			}
+	
+			connectedCallback () {
+				this.innerHTML = `<p>The story begins </p>`;
+				this.store.subscribe(this.onStateChange);
+			}
+	
+			disconnectedCallback () {
+				this.store.unsubscribe(this.onStateChange);
+			}
+		};
 }
 

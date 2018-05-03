@@ -40,6 +40,6 @@ public class AuthenticationServlet extends HttpServlet {
     public void doDelete( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsersDAO dao = new UsersDAOImpl(request.getSession());
 		dao.logout();
-		response.sendRedirect("auth");
+	
     }
 }

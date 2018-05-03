@@ -10,7 +10,21 @@ export function loop (store) {
 	// hint: read how many "generators" in store and iterate through them to
 	//       count how many value to increment to "resource"
 	// hint: remember to change event through `store.dispatch`
+	var increase = 0;
+	store.state.generators.forEach((element) => {
+		increase += (element.rate * element.quantity);
+	});
+	
 
+store.dispatch({
+	type: 'INCREMENT',
+	payload: increase
+	
+});
+
+	store.dispatch({
+		type: 'CHECK_STORY'
+	})
 
 	// TODO: triggers stories from story to display state if they are passed
 	//       the `triggeredAt` points

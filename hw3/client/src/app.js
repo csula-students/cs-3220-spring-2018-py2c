@@ -77,8 +77,83 @@ function main () {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
-		stories: []
+		generators: [
+			{
+				type: 'autonomous',
+				name : 'Potion',
+				description: "This Potion increases your attack",
+				rate: 1,
+				quantity : 0,
+				baseCost: 10,
+				ulockValue :10
+			},
+
+
+
+
+			{
+				type: 'autonomous',
+				name : 'Pet',
+				description: " This pet helps you pick up rupee's",
+				rate: 10,
+				quantity : 0,
+				baseCost: 15,
+				ulockValue :10
+
+			},
+			{
+
+
+
+				type: 'autonomous',
+				name : 'Human',
+				description: "This human companion helps you do leet dmg",
+				rate: 20,
+				quantity : 0,
+				baseCost: 20,
+				ulockValue :10
+			}			
+
+
+		],
+		story: 
+		
+		[
+		{   name: 'Waking up',
+			description: 'Waking up in Dark Place',
+			triggeredAt : 10,
+			state:'hidden'
+		}
+		,
+		{
+			name: 'Exploring',
+			description: 'You start to explore',
+			triggeredAt : 50,
+			state:'hidden'
+		}
+		,
+		{
+			name: 'Deep',
+			description: 'Going deeeper and deeper',
+			triggeredAt: 100,
+			state:'hidden'
+
+		}
+		,
+		{
+			name: 'The way',
+			description: 'Will you find your way',
+			triggeredAt: 150,
+			state: 'hidden'
+		}
+		,
+		{	
+			name: 'Perish',
+			description: 'Or will you perish',
+			triggeredAt : 200,
+			state: 'hidden'
+		}
+		]
 	};
 
 	// initialize store

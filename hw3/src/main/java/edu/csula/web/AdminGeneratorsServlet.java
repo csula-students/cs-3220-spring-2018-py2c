@@ -11,17 +11,23 @@ import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
 import edu.csula.models.User;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @WebServlet("/admin/generators")
 public class AdminGeneratorsServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UsersDAO userDao = new UsersDAOImpl(request.getSession());
 	
-			if (userDao.getAuthenticatedUser().isPresent()){
-			EventsDAO dao = new EventsDAOImpl(getServletContext());
+			if (userDao.getAuthenticatedUser().isPresent())
+			{
+			GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
 			Collection<Generator> generators = dao.getAll();
-		
-			request.setAttribute("generators", generators);
+			request.setAttribute("generatorentry", generators);
 			request.getRequestDispatcher("../WEB-INF/admin-generator.jsp")
 			  .forward(request, response);
 			}

@@ -24,11 +24,11 @@
 
             | 
 
-            <a href="generators">Generators</a>"
+            <a href="generators">Generators</a>
 
             | 
 
-            <a href="events">Events</a>"
+            <a href="events">Events</a>
 
         </nav>
 
@@ -104,7 +104,7 @@
                                     <td>${event.getTriggerAt()}</td>
                                     <td>
                                             <a href="EditEventServlet?id=${event.getId()}">Edit</a>|
-                                            <a href="DeleteEventServlet?id=${event.getId()}">delete</a> 
+                                            <a href="DeleteEventServlet?id=${event.getId()}">Delete</a> 
                                     </td>
                                 </tr>	
                                 </c:forEach>

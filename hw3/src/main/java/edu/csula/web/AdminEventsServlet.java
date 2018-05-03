@@ -13,11 +13,10 @@ import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
 import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
-import edu.csula.models;
+import edu.csula.models.Event;
 
 @WebServlet("/admin/events")
-public class AdminEventsServlet extends HttpServlet {
-	@Override
+
 	public class AdminEventsServlet extends HttpServlet {
 		@Override
 		public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,4 +52,3 @@ public class AdminEventsServlet extends HttpServlet {
 			
 		}
 	}
-}
