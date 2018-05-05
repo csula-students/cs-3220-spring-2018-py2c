@@ -49,8 +49,12 @@
 
 </main>
 <script>
-window.incrementalGame = {};
-window.incrementalGame.state = ${states};
+window.incrementalGame = {
+	        state: {
+	            counter: 0
+	        }
+		};
+    	window.incrementalGame.state = ${states};
 </script>
 <script  src = "app.js"></script>
 </body>
