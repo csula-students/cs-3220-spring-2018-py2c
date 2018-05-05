@@ -35,7 +35,7 @@
 <form class="card" action="">
 	<div class ="form group">
 		<div class = "rows">
-		<c:forEach items="${generators}" var="generator"></c:forEach>
+		<c:forEach items="${generators}" var="generator">
 		<p>${generator.name}<span> 0</span></p>
 		<p>${generator.description}</p>
 		<p>%{generator.rate}</p> 
