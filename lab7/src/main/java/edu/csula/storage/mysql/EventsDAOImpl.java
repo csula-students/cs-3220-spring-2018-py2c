@@ -44,12 +44,12 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public Optional<Event> getById(int id) {
-		try (Connection c = context.getConnection(); PreparedStatement ps = c.prepareStatement(getByIdQuery)) {
+		try (Connection c = context.getConnection(); PreparedStatement  stmt = c.prepareStatement(getByIdQuery)) {
 			
 
-			ps.setInt(1, id);
+			stmt.setInt(1, id);
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet rs =  stmt.executeQuery();
 			if (rs.next()) {
 				int i = rs.getInt(1);
 				String name = rs.getString(2);
@@ -68,13 +68,13 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public void set(int id, Event event) {
-		try (Connection c = context.getConnection(); PreparedStatement pstmt = c.prepareStatement(setQuery)){
-			pstmt.setInt(1, id);
-			pstmt.setString(2, event.getName());
-			pstmt.setString(3, event.getDescription());
-			pstmt.setInt(4, event.getTriggerAt());
-			pstmt.setInt(5, event.getId());
-			pstmt.executeUpdate();
+		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(setQuery)){
+			stmt.setInt(1, id);
+			stmt.setString(2, event.getName());
+			stmt.setString(3, event.getDescription());
+			stmt.setInt(4, event.getTriggerAt());
+			stmt.setInt(5, event.getId());
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,11 +82,11 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public void add(Event event) {
-		try (Connection c = context.getConnection(); PreparedStatement pstmt = c.prepareStatement(addQuery)) {
-			pstmt.setString(1, event.getName());
-			pstmt.setString(2, event.getDescription());
-			pstmt.setInt(3, event.getTriggerAt());
-			pstmt.executeUpdate();
+		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(addQuery)) {
+			stmt.setString(1, event.getName());
+			stmt.setString(2, event.getDescription());
+			stmt.setInt(3, event.getTriggerAt());
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -96,9 +96,9 @@ public class EventsDAOImpl implements EventsDAO {
 
 	@Override
 	public void remove(int id) {
-		try(Connection c = context.getConnection(); PreparedStatement ps = c.prepareStatement(removeQuery)){
-			ps.setInt(1, id);
-			ps.executeUpdate();
+		try(Connection c = context.getConnection(); PreparedStatement  stmt = c.prepareStatement(removeQuery)){
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
 		}catch(SQLException e) {
 			
 		}
