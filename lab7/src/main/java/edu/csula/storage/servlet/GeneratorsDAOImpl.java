@@ -40,28 +40,56 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 
 	@Override
 	public List<Generator> getAll() {
-		// TODO: get a list of generators from the context
-		return new ArrayList<>();
+		
+		List<Generator> events = (List<Generator>) context.getAttribute(CONTEXT_NAME);
+		if(events == null){
+			return new ArrayList<Generator>();
+		}
+		return events;
 	}
 
 	@Override
 	public Optional<Generator> getById(int id) {
-		// TODO: get a certain generator from context
+		for (Generator event : this.getAll()) {
+			if (event.getId() == id) {
+				return Optional.of(event);
+			}
+		}
+		
 		return Optional.empty();
+		
 	}
 
 	@Override
 	public void set(int id, Generator generator) {
-		// TODO: change a certain generator from context
+		List<Generator> newone  = getAll();
+		for (int i = 0 ; i < newone .size() ; i++) {
+			if (newone.get(i).getId() == id) {
+				newone.set(i ,generator);
+			}
+		}
+		context.setAttribute(CONTEXT_NAME,newone );
 	}
 
 	@Override
 	public void add(Generator generator) {
-		// TODO: add a new generator to the context
+		
+		List<Generator> newone = getAll();
+		newone.add(generator);
+		context.setAttribute(CONTEXT_NAME,newone);
 	}
 
 	@Override
 	public void remove(int id) {
-		// TODO: remove a single generator from the context
+		
+		List<Generator> newone = this.getAll();
+
+		for (int i = 0; i < newone.size(); i++){
+			if (newone.get(i).getId() == id){
+				newone.remove(i);
+			}
+		}
+
+		this.context.setAttribute(CONTEXT_NAME,newone);
 	}
 }
