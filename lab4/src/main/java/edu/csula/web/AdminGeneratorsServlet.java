@@ -8,12 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/hello")
-public class HelloServlet extends HttpServlet {
+@WebServlet("/admin/generators")
+public class AdminGeneratorsServlet extends HttpServlet {
+	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		out.println("<h1>Hello world!</h1>");
-		
+		// TODO: render the generators page HTML
+		out.println("<h1>Hello generators servlet!</h1>");
+	}
+
+
+	@Override
+	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO: handle upsert transaction
 	}
 }
