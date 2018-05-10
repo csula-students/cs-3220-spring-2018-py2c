@@ -1,0 +1,86 @@
+
+html,
+body,
+button,
+label,
+textarea,
+footer,
+.story-time, game-counter{
+     box-sizing: border-box;
+     font-size: 16px;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+ }
+
+
+.width-constraint {
+    max-width: 80em;
+    margin: 0 auto;
+} 
+body > header {
+     margin-bottom: 1em;
+}
+body{
+    background-color:#ccc}
+
+.story-time {
+    height: 110px;
+    width: 100%;
+    padding: 0.5em 1em;
+    color:white;
+    background-color: black;
+    overflow:auto;
+}
+
+game-button button {
+    padding: 0.5em 1em;
+    background-color:#6666FF;color:white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    
+}
+
+game-button button:hover {
+     background-color: #eee;
+}
+game-button button:active {
+     background-color: #ccc;
+}
+ 
+.form-group {
+     margin-bottom: 1em;
+}
+ /**
+  * basic layout
+  */
+ .row-container {
+     display: flex;
+     
+ }
+ .row-container {
+     flex: 1;
+ }  
+.row-container_2{
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rows{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card {
+     max-width: 30em;
+     background-color: #fff;
+     padding: 1em;
+     border-radius: 2px;
+     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+     margin: 0.2em;
+ }
+ .card .actions {
+    display: flex;
+    justify-content: flex-end;
+}
+ 
