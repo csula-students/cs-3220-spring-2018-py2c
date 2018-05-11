@@ -74,12 +74,8 @@ main();
 // main function wraps everything at top level
 function main () {
 	// TODO: fill the blank based on the theme you have choosen
-	const initialState = {
-		example: 'Hello custom element',
-		resource: {},
-		generators: [],
-		story: []
-	};
+	const initialState = window.defaultState;
+	
 
 	// initialize store
 	const store = new Store(reducer, initialState);
