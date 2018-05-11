@@ -12,13 +12,13 @@ export default function (store) {
 	
 			
 			var keep_story =`<p>The story begins </p>`;
-			store.state.story.forEach((element) => {
-					if (element.state =='visible')
-					{
-						keep_story +=`<p>${element.description}</p>`
-	
-					}
-		});
+			this.store.state.stories.forEach(story => {
+				if(story.state === 'visible'){
+					console.log(story);
+
+					keep_story = `<p>${story.description}</p>`;     //update storybox
+				}
+			});
 					this.innerHTML = keep_story;
 		
 	

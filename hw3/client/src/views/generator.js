@@ -1,3 +1,5 @@
+
+import Generator from '../models/generator.js';
 export default function (store) {
 	return class GeneratorComponent extends window.HTMLElement {
 		constructor () {

@@ -1,8 +1,10 @@
+import Generator from './models/generator';
+import Story from './models/story';
 export default function reducer (state, action) {
 	switch (action.type) {
 	case 'EXAMPLE_MUTATION':
 		state.example = action.payload;
-		case constants.actions.BUTTON_CLICK:
+		case 'BUTTON_CLICK':
 		state.counter++;
 		return state;
 		
