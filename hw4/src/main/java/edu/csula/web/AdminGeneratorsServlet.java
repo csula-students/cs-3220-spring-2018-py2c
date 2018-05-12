@@ -11,7 +11,7 @@ import edu.csula.models.Generator;
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
 import edu.csula.models.User;
-
+import edu.csula.storage.mysql.Database;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
