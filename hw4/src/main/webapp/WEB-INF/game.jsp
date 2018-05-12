@@ -5,7 +5,10 @@
 	<title> Dungeon Extraordinare</title>
 	<link rel="stylesheet" href="../game.css">
 	
-
+	<script>
+		state = ${state};
+		window.defaultState = state;  // where state is passed from Controller as JSON string
+	</script>
 
 </head>
 <body class = "width-constraint">
@@ -22,9 +25,9 @@
 	<game-button></game-button>	
 </div>
 <div class = "row-container">
-	<game-generator data-id="0"></game-generator>
-	<game-generator data-id="1"></game-generator>
-	<game-generator data-id="2"></game-generator>
+	<c:forEach var = "i" begin = "0" end = "${generatorindex}">
+         	<game-generator data-id="${i}"></game-generator>
+      	</c:forEach>
 </div>
 
 </main>
@@ -32,10 +35,7 @@
 <script src ="../app.bundle.js"></script>
 
 
-<script>
-	state = ${state};
-	window.defaultState = state;  // where state is passed from Controller as JSON string
-</script>
+
 
 </body>
 <footer>

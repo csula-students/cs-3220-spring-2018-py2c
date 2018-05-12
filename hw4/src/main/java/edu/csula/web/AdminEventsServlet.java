@@ -3,6 +3,7 @@ package edu.csula.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,7 +25,7 @@ public class AdminEventsServlet extends HttpServlet {
 		
 		if (userDao.getAuthenticatedUser().isPresent()){
 			EventsDAOImpl dao = new EventsDAOImpl(new Database());
-		     Collection<Event> events = dao.getAll();
+		     List<Event> events = dao.getAll();
 	
 		request.setAttribute("events", events);
 		request.getRequestDispatcher("../WEB-INF/admin-events.jsp")
@@ -43,7 +44,7 @@ public class AdminEventsServlet extends HttpServlet {
 		
 		
 		EventsDAOImpl dao = new EventsDAOImpl(new Database());
-		Collection<Event> events = dao.getAll();
+		List<Event> events = dao.getAll();
 		String name = request.getParameter("name");
 		String description = request.getParameter("descTextArea");   
 		int triggerAt = Integer.parseInt(request.getParameter("triggerInput"));

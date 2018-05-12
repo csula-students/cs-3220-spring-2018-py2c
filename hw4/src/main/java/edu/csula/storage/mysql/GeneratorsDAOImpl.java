@@ -90,11 +90,12 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 	@Override
 	public void add(Generator generator) {
 		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(addQuery)) {
-			stmt.setString(1, generator.getName());
-			stmt.setString(2, generator.getDescription());
-			stmt.setInt(3, generator.getRate());
-			stmt.setInt(4, generator.getBaseCost());
-			stmt.setInt(5, generator.getUnlockAt());
+			stmt.setInt(1, generator.getId());
+			stmt.setString(2, generator.getName());
+			stmt.setString(3, generator.getDescription());
+			stmt.setInt(4, generator.getRate());
+			stmt.setInt(5, generator.getBaseCost());
+			stmt.setInt(6, generator.getUnlockAt());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

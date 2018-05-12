@@ -16,7 +16,7 @@ public class EventsDAOImpl implements EventsDAO {
 	protected static final String getAllQuery = "SELECT * FROM events";
 	protected static final String getByIdQuery = "SELECT * FROM Events WHERE id = ?";
 	protected static final String setQuery = "UPDATE events SET name=?, description=?, trigger_at=? WHERE id=?";
-	protected static final String addQuery = "INSERT INTO events (name, description, trigger_at) VALUES (?, ?, ?)";
+	protected static final String addQuery = "INSERT INTO events VALUES (?,?, ?, ?)";
 	protected static final String removeQuery = "DELETE FROM events WHERE id=?";
 
 	public EventsDAOImpl(Database context) {
@@ -83,9 +83,10 @@ public class EventsDAOImpl implements EventsDAO {
 	@Override
 	public void add(Event event) {
 		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(addQuery)) {
-			stmt.setString(1, event.getName());
-			stmt.setString(2, event.getDescription());
-			stmt.setInt(3, event.getTriggerAt());
+			stmt.setInt(1, event.getId());
+			stmt.setString(2, event.getName());
+			stmt.setString(3, event.getDescription());
+			stmt.setInt(4, event.getTriggerAt());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
