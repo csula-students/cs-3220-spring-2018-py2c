@@ -18,18 +18,37 @@ import edu.csula.models.Event;
 public class AdminEventsServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		// TODO: render the events page HTML
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		UsersDAOImpl userDao = new UsersDAOImpl(request.getSession());
+		
+		if (userDao.getAuthenticatedUser().isPresent()){
+			EventsDAOImpl dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
-		System.out.println(events);
-		out.println("<h1>Hello events servlet!</h1>");
+	
+		request.setAttribute("events", events);
+		request.getRequestDispatcher("../WEB-INF/admin-events.jsp")
+		  .forward(request, response);
+		}
+		else{
+			response.sendRedirect("auth");
+		}
+
 	}
+
 
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO: handle upsert transaction
+		//EventsDAO dao = new EventsDAOImpl(getServletContext());
+		
+		EventsDAOImpl dao = new EventsDAOImpl(new Database());
+		Collection<Event> events = dao.getAll();
+		String name = request.getParameter("name");
+		String description = request.getParameter("descTextArea");   
+		int triggerAt = Integer.parseInt(request.getParameter("triggerInput"));
+		Event event = new Event(events.size(), name, description, triggerAt);
+		dao.add(event);
+		response.sendRedirect("events");
+		
+		
 	}
 }
