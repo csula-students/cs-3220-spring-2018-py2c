@@ -22,7 +22,7 @@ public class AdminEventsServlet extends HttpServlet {
 		
 		if (userDao.getAuthenticatedUser().isPresent()){
 			EventsDAOImpl dao = new EventsDAOImpl(new Database());
-		Collection<Event> events = dao.getAll();
+		     Collection<Event> events = dao.getAll();
 	
 		request.setAttribute("events", events);
 		request.getRequestDispatcher("../WEB-INF/admin-events.jsp")
@@ -38,7 +38,7 @@ public class AdminEventsServlet extends HttpServlet {
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//EventsDAO dao = new EventsDAOImpl(getServletContext());
+		
 		
 		EventsDAOImpl dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
