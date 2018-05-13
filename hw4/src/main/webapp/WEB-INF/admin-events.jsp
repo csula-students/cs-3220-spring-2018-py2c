@@ -20,7 +20,7 @@
 
         <nav class="main-nav">
 
-            <a href="game-info.html">Game Information</a>
+            <a href="game-info">Game Information</a>
 
             | 
 
