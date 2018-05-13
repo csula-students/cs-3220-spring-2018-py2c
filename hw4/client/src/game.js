@@ -1,5 +1,7 @@
 import Generator from './models/generator.js'
 
+
+
 // default interval as 1 second
 const interval = 1000;
 
@@ -15,6 +17,7 @@ export function loop (store) {
 
 	var increase = 0;
 	store.state.generators.forEach((element) => {
+		
 		increase += (element.rate * element.quantity);
 	});
 	

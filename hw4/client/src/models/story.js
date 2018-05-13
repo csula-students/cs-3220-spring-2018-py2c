@@ -7,7 +7,7 @@ export default class Story {
 	constructor (meta) {
 		this.name = meta.name;
 		this.description = meta.description;
-		this.triggeredAt = meta.triggeredAt;
+		this.triggerAt = meta.triggerAt;
 		this.state = meta.state;
 	}
 
@@ -17,7 +17,7 @@ export default class Story {
 	 * @return {boolean} if this story is unlockable
 	 */
 	isUnlockYet (value) {
-		if (value >= this.triggeredAt){
+		if (value >= this.triggerAt){
 			return true;
 		}else
 		{

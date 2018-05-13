@@ -86,6 +86,7 @@ class Generator {
   * @constructor
   * @param {object} meta - meta object for constructing generator
   */
+
 	constructor(meta) {
 		this.type = meta.type;
 		this.name = meta.name;
@@ -728,6 +729,7 @@ function loop(store) {
 
 	var increase = 0;
 	store.state.generators.forEach(element => {
+
 		increase += element.rate * element.quantity;
 	});
 
@@ -855,6 +857,7 @@ function reducer(state, action) {
 
 		case _constants2.default.actions.BUTTON_CLICK:
 			state.counter++;
+
 			return state;
 
 		case 'BUY_GENERATOR':
@@ -866,7 +869,7 @@ function reducer(state, action) {
 			}
 			const generator = new _generator2.default(state.generators[index]);
 			if (state.counter >= generator.getCost()) {
-				console.log(this, generator);
+
 				state.counter -= generator.getCost().toFixed(2);
 				state.generators[index].quantity++;
 
@@ -920,7 +923,7 @@ class Story {
 	constructor(meta) {
 		this.name = meta.name;
 		this.description = meta.description;
-		this.triggeredAt = meta.triggeredAt;
+		this.triggerAt = meta.triggerAt;
 		this.state = meta.state;
 	}
 
@@ -930,7 +933,7 @@ class Story {
   * @return {boolean} if this story is unlockable
   */
 	isUnlockYet(value) {
-		if (value >= this.triggeredAt) {
+		if (value >= this.triggerAt) {
 			return true;
 		} else {
 			return false;

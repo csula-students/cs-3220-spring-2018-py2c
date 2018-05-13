@@ -6,6 +6,7 @@ export default class Generator {
 	 * @constructor
 	 * @param {object} meta - meta object for constructing generator
 	 */
+
 	constructor (meta) {
 		this.type = meta.type;
 		this.name = meta.name;

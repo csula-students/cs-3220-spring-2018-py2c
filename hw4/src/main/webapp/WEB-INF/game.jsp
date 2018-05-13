@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,6 @@
 		state = ${state};
 		window.defaultState = state;  // where state is passed from Controller as JSON string
 	</script>
-
 </head>
 <body class = "width-constraint">
 	<header>

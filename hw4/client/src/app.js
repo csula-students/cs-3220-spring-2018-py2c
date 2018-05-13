@@ -75,6 +75,7 @@ main();
 function main () {
 	// TODO: fill the blank based on the theme you have choosen
 	const initialState = window.defaultState;
+		
 
 	// initialize store
 	const store = new Store(reducer, initialState);

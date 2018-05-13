@@ -6,8 +6,9 @@ import edu.csula.models.Event;
 import edu.csula.models.Generator;
 
 public class State {
-	private int counter = 0;
-	private Collection<Event> story;
+	 int counter = 0;
+	 int quantity = 0;	
+	 private Collection<Event> story;
 	private Collection<Generator> generators;
 	
 

@@ -1,4 +1,3 @@
-
 /*eslint-env node, jest */
 import reducer from '../src/reducer';
 import constants from '../src/constants';

@@ -7,7 +7,7 @@ public class Generator {
 	private int rate;
 	private int baseCost;
 	private int unlockAt;
-
+	private int quantity =0;
 	public Generator(int id, String name, String description, int rate, int baseCost, int unlockAt) {
 		this.id = id;
 		this.name = name;
@@ -15,6 +15,7 @@ public class Generator {
 		this.rate = rate;
 		this.baseCost = baseCost;
 		this.unlockAt = unlockAt;
+		this.quantity = quantity;
 	}
 
 	public int getId() {
@@ -59,6 +60,12 @@ public class Generator {
 		this.unlockAt = unlockAt;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -69,7 +76,8 @@ public class Generator {
 			this.description.equals(generator.description) &&
 			this.baseCost == generator.baseCost &&
 			this.rate == generator.rate &&
-			this.unlockAt == generator.unlockAt;
+			this.unlockAt == generator.unlockAt &&
+			this.quantity == generator.quantity;
 	}
 
 	@Override

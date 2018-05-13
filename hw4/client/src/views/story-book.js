@@ -1,4 +1,5 @@
 
+
 export default function (store) {
 	return class StoryBookComponent extends window.HTMLElement {
 		constructor () {
@@ -36,3 +37,4 @@ export default function (store) {
 		}
 	};
 }
+
