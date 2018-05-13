@@ -74,18 +74,24 @@ main();
 // main function wraps everything at top level
 function main () {
 	// TODO: fill the blank based on the theme you have choosen
-	const initialState = window.defaultState;
-	
+	const initialState = {
+		example: 'Hello custom element',
+		counter: 0,
+		generators: [],
+		stories: []
+	};
 
-	// initialize store
 	const store = new Store(reducer, initialState);
 	console.log(ExampleComponent(store));
 
 	// define web components
 	window.customElements.define('component-example', ExampleComponent(store));
+	// no longer used
 	window.customElements.define('game-button', ButtonComponent(store));
 	window.customElements.define('game-counter', CounterComponent(store));
+	// lab 3
 	window.customElements.define('game-generator', GeneratorComponent(store));
+	// homework 1
 	window.customElements.define('game-story-book', StoryBookComponent(store));
 
 	// For ease of debugging purpose, we will expose the critical store under window
